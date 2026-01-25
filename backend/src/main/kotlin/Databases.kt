@@ -1,19 +1,26 @@
 package de.pigeonport.componentwarehouse
 
 import com.mongodb.client.*
+import de.pigeonport.componentwarehouse.database.Car
+import de.pigeonport.componentwarehouse.database.CarService
 import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.config.*
-import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.json.Json
+import org.bson.Document
 
 fun Application.configureDatabases() {
     val mongoDatabase = connectToMongoDB()
     val carService = CarService(mongoDatabase)
     routing {
+
+        get("/cars"){
+            call.respond(carService.readAll())
+        }
+
         // Create car
         post("/cars") {
             val car = call.receive<Car>()
@@ -68,7 +75,7 @@ fun Application.connectToMongoDB(): MongoDatabase {
     val host = environment.config.tryGetString("db.mongo.host") ?: "127.0.0.1"
     val port = environment.config.tryGetString("db.mongo.port") ?: "27017"
     val maxPoolSize = environment.config.tryGetString("db.mongo.maxPoolSize")?.toInt() ?: 20
-    val databaseName = environment.config.tryGetString("db.mongo.database.name") ?: "myDatabase"
+    val databaseName = environment.config.tryGetString("db.mongo.database") ?: "myDatabase"
 
     val credentials = user?.let { userVal -> password?.let { passwordVal -> "$userVal:$passwordVal@" } }.orEmpty()
     val uri = "mongodb://$credentials$host:$port/?maxPoolSize=$maxPoolSize&w=majority"
