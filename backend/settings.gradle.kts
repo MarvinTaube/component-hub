@@ -1,7 +1,1 @@
-rootProject.name = "backend"
-
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-    }
-}
+rootProject.name = "ComponentWarehouseSpring"
