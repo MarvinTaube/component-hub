@@ -22,10 +22,6 @@ data class TagRequest(
     val color: String
 )
 
-data class SectionRequest(
-    val position: Int,
-    val drawerId: Long
-)
 
 data class TransactionRequest(
     val projectId: Long
@@ -44,4 +40,8 @@ data class PartRequest(
     val links: List<String> = emptyList(),
     val notes: String? = null,
     val imageLink: String? = null,
+    val drawerId: Long? = null,
+    val sectionNumber: Int? = null,
+    val categoryId: Long? = null,
+    val tagIds: List<Long>? = null,
 )

@@ -17,8 +17,9 @@ data class Part(
     val links: List<String> = emptyList(),
     val notes: String? = null,
     val imageLink: String? = null,
-    @OneToOne
-    val section: Section? = null,
+    @ManyToOne
+    val drawer: Drawer? = null,
+    val sectionNumber: Int = 1,
     @ManyToOne
     val category: Category? = null,
     @ManyToMany
