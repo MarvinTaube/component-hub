@@ -1,5 +1,8 @@
+# Component Hub
+
+## Database Schema
 ```mermaid
-  
+
 erDiagram
 	DRAWER ||--|{ PART : "contains"
 	PART }o--o{ TAG : "has"
