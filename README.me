@@ -1,0 +1,68 @@
+
+erDiagram
+	DRAWER ||--|{ PART : "contains"
+	PART }o--o{ TAG : "has"
+	PART }o--|| CATEGORY : "has"
+	TRANSACTION ||--|{ TRANSACTION_LINE : contains
+	TRANSACTION_LINE ||--|| PART : contains
+	PROJECT ||--o{ TRANSACTION : has
+
+	DRAWER {
+		long id
+		int number
+	}
+
+	PART {
+		long id
+		string name
+		string description
+		int stock
+		string[] links
+		string notes
+		string imageLink
+		long drawerId
+		int sectionNumber
+		long categoryId
+		long tagId
+	}
+
+	TAG {
+		long id
+		string name
+		string color
+	}
+
+	PART_TAGS {
+		long id
+		long partId
+		long tagId
+	}
+
+	CATEGORY {
+		long id
+		string name
+		string notes
+	}
+
+	TRANSACTION {
+		long id
+		long projectId
+		datetime createdAt
+	}
+
+	TRANSACTION_LINE {
+		long id
+		long transactionId
+		long partId
+		int quantity
+	}
+
+	PROJECT {
+		long id
+		string name
+		string description
+		Transaction[] transactions
+		bool finished
+		bool published
+		string blogLink
+	}
