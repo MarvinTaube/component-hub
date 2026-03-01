@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:8080
+@partsUrl = {{baseUrl}}/api/parts
+
+### Create Part
+# @name createPart
+POST {{partsUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Resistor 10k",
+  "description": "Through-hole resistor, 1/4W",
+  "stock": 250,
+  "links": ["https://example.com/resistor-10k"],
+  "notes": "Bag A3",
+  "imageLink": "https://example.com/images/resistor.jpg",
+  "drawerId": 1,
+  "sectionNumber": 1,
+  "categoryId": 1,
+  "tagIds": [1, 2]
+}
+
+> {%
+    // Save the created id for later requests
+    client.global.set("partId", response.body.id);
+%}
+
+### List all Parts
+GET {{partsUrl}}
+Accept: application/json
+
+### Get Part by id (from createPart)
+GET {{partsUrl}}/{{partId}}
+Accept: application/json
+
+### Update Part (by id)
+PUT {{partsUrl}}/{{partId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Resistor 10k (updated)",
+  "description": "Through-hole resistor, 1/4W, 1%",
+  "stock": 200,
+  "links": ["https://example.com/resistor-10k", "https://example.com/datasheet"],
+  "notes": "Moved to drawer B1",
+  "imageLink": "https://example.com/images/resistor-10k.jpg",
+  "drawerId": 2,
+  "sectionNumber": 2,
+  "categoryId": 2,
+  "tagIds": [1, 3]
+}
+
+### Delete Part (by id)
+DELETE {{partsUrl}}/{{partId}}
+
+### Verify deleted (should be 404)
+GET {{partsUrl}}/{{partId}}
+Accept: application/json

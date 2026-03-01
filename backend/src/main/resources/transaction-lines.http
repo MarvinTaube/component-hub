@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:8080
+@transactionLinesUrl = {{baseUrl}}/api/transaction-lines
+
+### Create Transaction Line (Requires existing Transaction and Part)
+# @name createTransactionLine
+POST {{transactionLinesUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "transactionId": {{transactionId}},
+  "partId": {{partId}},
+  "quantity": 5
+}
+
+> {%
+    client.global.set("transactionLineId", response.body.id);
+%}
+
+### List all Transaction Lines
+GET {{transactionLinesUrl}}
+Accept: application/json
+
+### Get Transaction Line by id
+GET {{transactionLinesUrl}}/{{transactionLineId}}
+Accept: application/json
+
+### Update Transaction Line
+PUT {{transactionLinesUrl}}/{{transactionLineId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "transactionId": {{transactionId}},
+  "partId": {{partId}},
+  "quantity": 10
+}
+
+### Delete Transaction Line
+DELETE {{transactionLinesUrl}}/{{transactionLineId}}

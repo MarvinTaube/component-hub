@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:8080
+@projectsUrl = {{baseUrl}}/api/projects
+
+### Create Project
+# @name createProject
+POST {{projectsUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Weather Station",
+  "description": "An IoT weather station based on ESP32",
+  "finished": false,
+  "published": false,
+  "blogLink": "https://example.com/weather-station"
+}
+
+> {%
+    client.global.set("projectId", response.body.id);
+%}
+
+### List all Projects
+GET {{projectsUrl}}
+Accept: application/json
+
+### Get Project by id
+GET {{projectsUrl}}/{{projectId}}
+Accept: application/json
+
+### Update Project
+PUT {{projectsUrl}}/{{projectId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Weather Station (updated)",
+  "description": "An IoT weather station with BME280 sensor",
+  "finished": true,
+  "published": true,
+  "blogLink": "https://example.com/weather-station-updated"
+}
+
+### Delete Project
+DELETE {{projectsUrl}}/{{projectId}}

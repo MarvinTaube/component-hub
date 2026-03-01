@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:8080
+@transactionsUrl = {{baseUrl}}/api/transactions
+
+### Create Transaction (Requires existing Project)
+# @name createTransaction
+POST {{transactionsUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "projectId": {{projectId}}
+}
+
+> {%
+    client.global.set("transactionId", response.body.id);
+%}
+
+### List all Transactions
+GET {{transactionsUrl}}
+Accept: application/json
+
+### Get Transaction by id
+GET {{transactionsUrl}}/{{transactionId}}
+Accept: application/json
+
+### Update Transaction
+PUT {{transactionsUrl}}/{{transactionId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "projectId": {{projectId}}
+}
+
+### Delete Transaction
+DELETE {{transactionsUrl}}/{{transactionId}}

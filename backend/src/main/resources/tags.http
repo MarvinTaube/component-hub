@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:8080
+@tagsUrl = {{baseUrl}}/api/tags
+
+### Create Tag
+# @name createTag
+POST {{tagsUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "SMD",
+  "color": "#FF0000"
+}
+
+> {%
+    client.global.set("tagId", response.body.id);
+%}
+
+### List all Tags
+GET {{tagsUrl}}
+Accept: application/json
+
+### Get Tag by id
+GET {{tagsUrl}}/{{tagId}}
+Accept: application/json
+
+### Update Tag
+PUT {{tagsUrl}}/{{tagId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "SMD (updated)",
+  "color": "#00FF00"
+}
+
+### Delete Tag
+DELETE {{tagsUrl}}/{{tagId}}

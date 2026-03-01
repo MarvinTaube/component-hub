@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:8080
+@drawersUrl = {{baseUrl}}/api/drawers
+
+### Create Drawer
+# @name createDrawer
+POST {{drawersUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "number": 101
+}
+
+> {%
+    client.global.set("drawerId", response.body.id);
+%}
+
+### List all Drawers
+GET {{drawersUrl}}
+Accept: application/json
+
+### Get Drawer by id
+GET {{drawersUrl}}/{{drawerId}}
+Accept: application/json
+
+### Update Drawer
+PUT {{drawersUrl}}/{{drawerId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "number": 102
+}
+
+### Delete Drawer
+DELETE {{drawersUrl}}/{{drawerId}}

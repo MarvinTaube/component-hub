@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:8080
+@categoriesUrl = {{baseUrl}}/api/categories
+
+### Create Category
+# @name createCategory
+POST {{categoriesUrl}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Microcontrollers",
+  "notes": "ESP32, Arduino, STM32"
+}
+
+> {%
+    client.global.set("categoryId", response.body.id);
+%}
+
+### List all Categories
+GET {{categoriesUrl}}
+Accept: application/json
+
+### Get Category by id
+GET {{categoriesUrl}}/{{categoryId}}
+Accept: application/json
+
+### Update Category
+PUT {{categoriesUrl}}/{{categoryId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Microcontrollers (updated)",
+  "notes": "ESP32, Arduino, STM32, ESP8266"
+}
+
+### Delete Category
+DELETE {{categoriesUrl}}/{{categoryId}}
