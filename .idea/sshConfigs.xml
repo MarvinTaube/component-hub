@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="pigeonport.de" id="c2d8f967-051b-41ff-9cc4-29ad1adcbe9b" keyPath="C:\Users\Marvi\.ssh\private" port="22" nameFormat="DESCRIPTIVE" username="marvin" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

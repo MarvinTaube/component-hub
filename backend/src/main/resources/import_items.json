@@ -1,0 +1,1558 @@
+[
+    {
+        "_id": {
+            "$oid": "670313feadb2305b2329cf5a"
+        },
+        "name": "I2C 8-Channel Multiplex",
+        "description": "Tca9548a",
+        "category": "",
+        "notes": "Produkt merkmale:\n1. Der Adapter ist an ein i2c-Gerät mit mehreren identischen Adressen auf demselben i2c-Anschluss auf der Haupt steuer karte für normale Kommunikation und Verwendung anges ch lossen.\n2. Es gibt 8 i2c-Schnittstellen auf einem Expander, und es gibt acht bidirektion ale Übertragungs schalter, die durch i2c-Bus gesteuert werden können. Dies bedeutet, dass nach der Übertragung von 1 Expander 8 identische Adressen mit demselben i2c-Port verbunden werden können. Das Gerät ist auch im normalen Gebrauch. Die Standard adresse dieses Expanders ist 0x70, die Adresse kann geändert werden und kann innerhalb von 0x70 ~ 0x77 nach Ihren Bedürfnissen eingestellt werden. Theoretisch können 8 Expander kaskadi ert werdenDie Adresse von 0x70 ~ 0x77, und jeder Expander kann 8 Geräte mit der gleichen Adresse verbinden.\nDies realisiert den gleichen i2c-Port und verbindet 64 Geräte mit der gleichen Adresse und verwendet sie normal. Sehr mächtig!\n3. kompatibel mit iic bus und system management bus (smbus), aktive low reset eingang, unterstützung für heiße einführung, niedrigen standby-strom, keine pitch während der power-up, unterstützung für spannungen zwischen 1,8 v, 2,5 V, 3,3 V und 5V Busse Pegel verschiebung.\n4. je nach Inhalt der programmier baren Steuer register kann jeder einzelne scn/sdn-Kanal oder eine Kombination von Kanälen ausgewählt werden. Wenn ein Timeout oder ein anderer unsachgemäßer Betrieb auftritt, kann der System master den tca9548a zurücksetzen, indem er den/reset-Eingang niedrig behauptet. In ähnlicher Weise deaktiviert ein Power-On-Reset alle Kanäle und initial isiert die i2c/smbus-Zustands maschine. Reset und Initial isierung kann auch durch Behauptung/Reset erreicht werden, und es besteht keine Notwendigkeit, das Teil herunter zu fahren. Der Schalter hat ein Einschalt tor, so dass der vcc-Stift verwendet werden kann, um die maximale Hochspannung durch den tca9548a zu begrenzen. Durch die Begrenzung der maximalen Hochspannung können unterschied liche Bus spannungen an jedem Kanal paar verwendet werden, so dass 1,8 V-, 2,5 V-oder 3,3 V-Komponenten ohne zusätzlichen Schutz mit 5-V-Komponenten kommunizieren können. Für jeden Kanal zieht das Gerät externe Pull-up-Widerstände die Bus spannung auf den gewünschten Spannungs pegel. Alle i/o pins sind 5v standhalten spannung.\n\n\nProdukt parameter:\nArbeits spannung: 1,65 V ~ 5,5 V\nIic Taktfrequenz: 0 ~ 400kHz\nArbeits umgebungs temperatur: -40 °c ~ 85 ° c\nKleine Brett größe: 31,5mm * 21,4mm mit zwei m3-Montagelöchern\n\n\nGebrauchs anweisung:\nDie/reset, sda, scl, a0, a1 und a2 Pins auf der kleinen Platine sind mit dem Pull-up 10k Widerstand verbunden, keine Notwendigkeit, extern zu verbinden.",
+        "links": [
+            "https://de.aliexpress.com/item/1005007054751329.html?spm=a2g0o.order_list.order_list_main.5.775f5c5fwEM3zD&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=i2cmultiplex.jpg&type=itemImage",
+        "box": 2,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-06T22:49:34.748Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T10:31:31.157Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "670314c4adb2305b2329cf64"
+        },
+        "name": "Passiver Summer",
+        "description": "10 Stück passiver Summer 12 mm x 8,5 mm 12085 42R Widerstand 3 V 5 V 9 V 12 V in allgemeiner Verwendung Mini-Piezo-Summer-Kit, für Arduino",
+        "category": "",
+        "notes": "Übersicht\nBerichtpunkt\n10 Stück passiver Summer AC 12mm x 8,5mm 42r Widerstand 3V 5V 9V 12V im allgemeinen Gebrauch Mini-Piezo-Summer für Arduino DIY Electronic\n\nFeature:\n\nName:12085 passiver Summer\nDurchmesser: 12mm\nHöhe: 8,5mm\n42r 12085 3v-12v gemeinsam\n\nPaket liste:\n\n10 Stück passive Summer\n\n",
+        "links": [
+            "https://de.aliexpress.com/item/1005006213298069.html?spm=a2g0o.order_list.order_list_main.11.53845c5fAHA5rw&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 11,
+        "imageLink": "/api/files/getFile?file=buzzer-passive-2-532403674.jpg&type=itemImage",
+        "box": 1,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-06T22:52:52.575Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T10:53:36.875Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e5a9db639776210976591"
+        },
+        "name": "Induktor Sortiment",
+        "description": "1 uh * 10 pcs\n2,2 uh * 10 pcs\n3,3 uh * 10 pcs\n4,7 uh * 10 pcs\n6,8 uh * 10 pcs\n\n10 uh * 10 pcs\n15 uh * 10 pcs\n22 uh * 10 pcs\n33 uh * 10 pcs\n47 uh * 10 pcs\n\n100 uh * 10 pcs\n150 uh * 10 pcs\n220 uh * 10 pcs\n330 uh * 10 pcs\n470 uh * 10 pcs\n680 uh * 10 pcs\n\n1 mh * 10 pcs\n2,2 mh * 10 Stück\n3,3 mh * 10 Stück\n4,7 mh * 10 Stück",
+        "category": "Inductors",
+        "notes": "Blaue Gridfinity Box",
+        "links": [
+            "https://de.aliexpress.com/item/1005005742666970.html?spm=a2g0o.order_list.order_list_main.88.74775c5fJjNCs5&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 200,
+        "imageLink": "/api/files/getFile?file=image-671e5a9db639776210976591.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T15:22:05.180Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:01:36.770Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e5ae0b639776210976599"
+        },
+        "name": "Dioden Kit",
+        "description": "70 stücke * 1 n4148-schnelle Schalt diode\n70 stücke * 1 n4007-Hochspannungs-Gleich richter diode\n10 stücke * 1 n5819-Schottky-Diode\n10 stücke * 1 n5399-Hochs trom gleich richter diode\n10 stücke * 1 n5408-Hochspannung gleich richter diode\n10 stücke * 1 n5822-Schottky-Diode\n10 stücke * fr107-schnelle Wiederherstellung diode\n10 stücke * fr207-schnelle Wiederherstellung diode",
+        "category": "Diodes",
+        "notes": "Organgene Gridfinity Box",
+        "links": [
+            "https://de.aliexpress.com/item/1005005656219150.html?spm=a2g0o.order_list.order_list_main.73.74775c5fJjNCs5&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 200,
+        "imageLink": "/api/files/getFile?file=image-671e5ae0b639776210976599.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T15:23:12.740Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:02:01.881Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e5b3db6397762109765a4"
+        },
+        "name": "Resistors",
+        "description": "- 0\n- 10\n- 20\n- 22\n- 47\n- 100\n- 150\n- 220\n- 270\n\n- 300\n- 330\n- 470\n- 510\n- 680\n- 1k\n- 2k\n- 2.2k\n- 3.3k\n\n- 4.7k\n- 5.1k\n- 6.8k\n- 10k\n- 20k\n- 22k\n- 47k\n- 51k\n- 68k\n\n- 100k\n- 220k\n- 330k\n- 470k\n- 680k\n- 1m ",
+        "category": "Resistors",
+        "notes": "Schwarze Gridfinity Box",
+        "links": [
+            "https://de.aliexpress.com/item/1005005656219150.html?spm=a2g0o.order_list.order_list_main.73.74775c5fJjNCs5&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 1100,
+        "imageLink": "/api/files/getFile?file=image-671e5b3db6397762109765a4.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T15:24:45.849Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:02:24.116Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e688a83ad44374e8a573d"
+        },
+        "name": "220V zu 5V Mini-Netzteil",
+        "description": "",
+        "category": "Netzteil",
+        "notes": "",
+        "links": [
+            "/api/files/getFile?file=az017_a_12-6_en_b078q2zmpt_80e278c3-6ca8-4129-b6af-ca14e7bda91f-671e688a83ad44374e8a573d.pdf&type=doc",
+            "/api/files/getFile?file=220v_zu_5v_mini_netzteil_datenblatt_az-delivery_vertriebs_gmbh_rev1_98fb05d1-9427-4da3-ae29-7cdf7db6aa9a-671e688a83ad44374e8a573d.pdf&type=doc",
+            "https://www.az-delivery.de/products/copy-of-220v-zu-5v-mini-netzteil"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=2_a3e7d309-e8b8-4ab1-9539-bd488775c448_480x480-671e688a83ad44374e8a573d.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:21:30.448Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:23:49.295Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e69da83ad44374e8a575a"
+        },
+        "name": "2 Kanal Solid State Relais 5V DC Low Level Trigger Power Switch",
+        "description": "",
+        "category": "Switch",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/2-kanal-solid-state-relais",
+            "/api/files/getFile?file=2chssr_datasheet-671e69da83ad44374e8a575a.pdf&type=doc",
+            "/api/files/getFile?file=az358_d13-10_en_b0bj7cdgc8-671e69da83ad44374e8a575a.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=2-kanal-solid-state-relais-5v-dc-low-level-trigger-power-switch-kompatibel-mit-arduino-und-raspberry-pi-721991-671e69da83ad44374e8a575a.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:27:06.994Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:28:52.592Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e6b4483ad44374e8a576e"
+        },
+        "name": "D1 Mini V3 NodeMCU mit ESP8266-12F",
+        "description": "",
+        "category": "NodeMCU",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/d1-mini-v3",
+            "/api/files/getFile?file=d1_mini_v3_datenblatt_az-delivery_vertriebs_gmbh_641b57e3-0efb-4efc-9693-a10cf1121549-671e6b4483ad44374e8a576e.pdf&type=doc",
+            "/api/files/getFile?file=az277_a_19-10_en_b08btyhjm1_1b93f870-13ad-4ce7-a022-d9f2dd6ada31-671e6b4483ad44374e8a576e.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=d1-mini-v3-nodemcu-mit-esp8266-12f-wlan-modul-kompatibel-mit-arduino-102873-671e6b4483ad44374e8a576e.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:33:08.597Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:34:04.288Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e6f6883ad44374e8a5786"
+        },
+        "name": "AZ-Nano V3-Board mit Atmega328 CH340",
+        "description": "",
+        "category": "Arduino",
+        "notes": "1x MicroUSB, 3x USB-C",
+        "links": [
+            "https://www.az-delivery.de/products/nano-v3-mit-ch340-arduino-kompatibel",
+            "/api/files/getFile?file=az188_a_2-7_a_2-8_en_b01lwsjbtd_b15076a1-bc3a-4468-8f18-6d636373d12c-671e6f6883ad44374e8a5786.pdf&type=doc",
+            "/api/files/getFile?file=nano_v3_mit_ch340_datenblatt_08ae97cb-a7dd-487f-9cfa-c3ae7aa871f1-671e6f6883ad44374e8a5786.pdf&type=doc"
+        ],
+        "quantity": 4,
+        "imageLink": "/api/files/getFile?file=az-nano-v3-board-mit-atmega328-ch340-nicht-verlotete-verbesserte-version-318809-671e6f6883ad44374e8a5786.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:50:48.144Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:51:47.063Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e701983ad44374e8a579c"
+        },
+        "name": "2-Relais Modul 5V mit Optokoppler Low-Level-Trigger",
+        "description": "",
+        "category": "Relay",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/2-relais-modul",
+            "/api/files/getFile?file=2_relais_modul_datenblatt-671e701983ad44374e8a579c.pdf&type=doc",
+            "/api/files/getFile?file=az013_a_8-4_en_b078q326kt_6c273d51-7651-4b98-8120-15cd47bdfe10-671e701983ad44374e8a579c.pdf&type=doc"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=2-relais-modul-5v-mit-optokoppler-low-level-trigger-kompatibel-mit-arduino-und-raspberry-pi-556708-671e701983ad44374e8a579c.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:53:45.780Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:54:30.662Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e70a583ad44374e8a57b0"
+        },
+        "name": "1-Relais 5V KY-019 Modul High-Level-Trigger",
+        "description": "",
+        "category": "Relay",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/relais-modul",
+            "/api/files/getFile?file=ky-019_1-relais_modul_datenblatt_az-delivery_vertriebs_gmbh_1-671e70a583ad44374e8a57b0.pdf&type=doc",
+            "/api/files/getFile?file=az145_b_4-13_en_b07tyg14n6_e0abe3d9-8c65-4166-9492-16969254877b-671e70a583ad44374e8a57b0.pdf&type=doc"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=1-relais-5v-ky-019-modul-high-level-trigger-693695-671e70a583ad44374e8a57b0.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:56:05.987Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:56:54.539Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e711c83ad44374e8a57cb"
+        },
+        "name": "Arduino Nano Terminal Adapter Board",
+        "description": "",
+        "category": "Arduino",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/terminal-adapter-board-mit-schraubklemmen-kompatibel-mit-nano-v3",
+            "/api/files/getFile?file=az300_b_20-10_de_b08t1zxs7k_7fdb317d-4530-44fe-832d-a2c94e5b3737-671e711c83ad44374e8a57cb.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=terminal-adapter-board-mit-schraubklemmen-kompatibel-mit-nano-v3-und-arduino-135370-671e711c83ad44374e8a57cb.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T16:58:04.206Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T16:58:56.776Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e733483ad44374e8a57e6"
+        },
+        "name": "Prototyping Prototype Shield Mini Breadboard für UNO R3",
+        "description": "",
+        "category": "Arduino",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/prototyping-shield",
+            "/api/files/getFile?file=az206_c2-13_en_b01mqxhohg-671e733483ad44374e8a57e6.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=prototyping-prototype-shield-mini-breadboard-fur-uno-r3-969940-671e733483ad44374e8a57e6.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T17:07:00.434Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T17:07:45.819Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e844a83ad44374e8a57f6"
+        },
+        "name": "Mikrocontroller Board AZ-ATmega328-Board",
+        "description": "",
+        "category": "Arduino",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/mikrocontroller-board",
+            "/api/files/getFile?file=az246_a_6-13_en_b08g1x67y9_081c2cfa-d5c9-4e77-aca5-891017d2ce54-671e844a83ad44374e8a57f6.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=mikrocontroller-board-az-atmega328-board-mit-usb-kabel-675822-671e844a83ad44374e8a57f6.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T18:19:54.429Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T18:22:13.106Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671e84fa83ad44374e8a5808"
+        },
+        "name": "AZ-ATmega328DIP-Board Mikrocontroller Board ATmega16U2 8-bit Entwicklerboard",
+        "description": "",
+        "category": "Arduino",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/mcu-mit-atmega328p-und-usb-kabel",
+            "/api/files/getFile?file=az246_a_6-13_en_b08g1x67y9-671e84fa83ad44374e8a5808.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=mikrocontroller-board-mit-atmega328p-atmega16u2-202026-671e84fa83ad44374e8a5808.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T18:22:50.206Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:32:15.529Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea13aa06c9a19c97cbf00"
+        },
+        "name": "I2C IIC Adapter serielle Schnittstelle für LCD Display 1602 und 2004",
+        "description": "",
+        "category": "Driver",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/serielle-schnittstelle",
+            "/api/files/getFile?file=az223_c_8-13_en_b01mfb4743_1ff8b5a8-e831-4fd7-a3b9-8a1308baa739-671ea13aa06c9a19c97cbf00.pdf&type=doc"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=i2c-iic-adapter-serielle-schnittstelle-fur-lcd-display-1602-und-2004-507029-671ea13aa06c9a19c97cbf00.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:23:22.298Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:24:12.657Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea20da06c9a19c97cbf11"
+        },
+        "name": "NRF24L01 mit 2,4 GHz Wireless Module für ESP8266",
+        "description": "",
+        "category": "Wireless",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/3x-nrf24l01-mit-2-4-ghz",
+            "/api/files/getFile?file=az198_c6-2_en_b06xjn417d-671ea20da06c9a19c97cbf11.pdf&type=doc"
+        ],
+        "quantity": 9,
+        "imageLink": "/api/files/getFile?file=nrf24l01-mit-24-ghz-wireless-module-fur-esp8266-raspberry-pi-und-arduino-574748-671ea20da06c9a19c97cbf11.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:26:53.673Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:27:29.761Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea2cba06c9a19c97cbf21"
+        },
+        "name": "Logic Analyzer 8 CH, 24MHz",
+        "description": "",
+        "category": "Tool",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/saleae-logic-analyzer",
+            "/api/files/getFile?file=az172_c2-7_en_b01mufrhq2_26c04f7a-b9ce-4dcd-aff7-9287750a4366-671ea2cba06c9a19c97cbf21.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=logic-analyzer-569418-671ea2cba06c9a19c97cbf21.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:30:03.324Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:30:47.688Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea377a06c9a19c97cbf38"
+        },
+        "name": "FT232-AZ USB zu TTL Serial Adapter für 3,3V und 5V",
+        "description": "",
+        "category": "Tool",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/ftdi-adapter-ft232rl",
+            "/api/files/getFile?file=az100_a7-9_en_b01n9rzk6i_b94e70b8-55f5-4042-ade8-1e3d28d6741e-671ea377a06c9a19c97cbf38.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ft232-az-usb-zu-ttl-serial-adapter-fur-33v-und-5v-424283-671ea377a06c9a19c97cbf38.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:32:55.573Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:33:49.924Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea464a06c9a19c97cbf48"
+        },
+        "name": "DS1307 Module V03",
+        "description": "",
+        "category": "Timer",
+        "notes": "",
+        "links": [],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=elegoo_capteur_38-1102890284-671ea464a06c9a19c97cbf48.png&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:36:52.067Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:36:57.972Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea69ca06c9a19c97cbf52"
+        },
+        "name": "KY-023 Joystick Modul für UNO R3",
+        "description": "",
+        "category": "",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/joystick-modul",
+            "/api/files/getFile?file=az149_b7-13_en_b07v3hqsvy-671ea69ca06c9a19c97cbf52.pdf&type=doc"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=ky-023-joystick-modul-fur-uno-r3-501545-671ea69ca06c9a19c97cbf52.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:46:20.295Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:46:49.109Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea728a06c9a19c97cbf62"
+        },
+        "name": "Mini MP3 Player DFPlayer Master Module",
+        "description": "",
+        "category": "",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/mp3-player-modul"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=mini-mp3-player-dfplayer-master-module-856208-671ea728a06c9a19c97cbf62.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:48:40.387Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:50:48.761Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea7f9a06c9a19c97cbf84"
+        },
+        "name": "HC-SR04 Ultraschall Modul Entfernungsmesser Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/3er-set-hc-sr04-ultraschallmodule",
+            "/api/files/getFile?file=az111_a_3-5_en_b07tkvpphf_dbea121c-d6d4-484a-a42a-a18cde147277-671ea7f9a06c9a19c97cbf84.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=hc-sr04-ultraschall-modul-entfernungsmesser-sensor-fur-raspberry-pi-835958-671ea7f9a06c9a19c97cbf84.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:52:09.144Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:52:42.579Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea8b0a06c9a19c97cbf94"
+        },
+        "name": "MT3608 DC-DC Netzteil Adapter Step up Modul",
+        "description": "",
+        "category": "Power",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/mt3608-dc-dc-step-up-modul-1",
+            "/api/files/getFile?file=az187_c_4-6_en_b089qhxf8k_982cfb12-1ab9-4745-8287-107507a50490-671ea8b0a06c9a19c97cbf94.pdf&type=doc"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=mt3608-dc-dc-netzteil-adapter-step-up-modul-932676-671ea8b0a06c9a19c97cbf94.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:55:12.976Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:55:51.487Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671ea92ca06c9a19c97cbfa4"
+        },
+        "name": "LM2596S DC-DC Netzteil Adapter Step down Modul",
+        "description": "",
+        "category": "Power",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/lm2596s-dc-dc-step-down-modul-1",
+            "/api/files/getFile?file=az171_b13-7_en_b089qjm8kq_bc16ab1d-ad19-4438-93ee-893a56865e67-671ea92ca06c9a19c97cbfa4.pdf&type=doc"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=lm2596s-dc-dc-netzteil-adapter-step-down-modul-567108-671ea92ca06c9a19c97cbfa4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T20:57:16.189Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T20:57:39.886Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671eab03a06c9a19c97cbfb4"
+        },
+        "name": "NEO-6M GPS Module",
+        "description": "",
+        "category": "GPS",
+        "notes": "",
+        "links": [
+            "https://randomnerdtutorials.com/guide-to-neo-6m-gps-module-with-arduino/"
+        ],
+        "quantity": 3,
+        "imageLink": "/api/files/getFile?file=neo-gps-1-671eab03a06c9a19c97cbfb4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T21:05:07.986Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T21:05:19.094Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671eab5fa06c9a19c97cbfc0"
+        },
+        "name": "Motion Sensor Motion Detection Module HC-SR501 PIR",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/en/products/bewegungsmelde-modul",
+            "/api/files/getFile?file=az058_a2-6_en_b07v6by66p_6f850aca-6009-4c87-8212-4bccc403a6f2-671eab5fa06c9a19c97cbfc0.pdf&type=doc"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=bewegungssensor-bewegungsmelde-modul-hc-sr501-pir-kompatibel-mit-arduino-und-raspberry-pi-342454-671eab5fa06c9a19c97cbfc0.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T21:06:39.126Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T21:07:09.540Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "671eabcca06c9a19c97cbfd0"
+        },
+        "name": "KY-040 Drehwinkelgeber Drehgeber Rotary Encoder",
+        "description": "",
+        "category": "Input",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/drehimpulsgeber-modul",
+            "/api/files/getFile?file=az165_b_23-7_en_b07tkk4qqd_a0148fb6-0b2b-4a59-a903-9ade7ef9fdd0-671eabcca06c9a19c97cbfd0.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ky-040-drehwinkelgeber-drehgeber-rotary-encoder-modul-237338-671eabcca06c9a19c97cbfd0.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-27T21:08:28.281Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-27T21:09:19.976Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f21fa06c9a19c97cbfeb"
+        },
+        "name": "GY-BME280 Barometrischer Sensor für Temperatur, Luftfeuchtigkeit und Luftdruck",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/gy-bme280",
+            "/api/files/getFile?file=az109_a3-7_en_b07d8t4hp6_068a8db7-3572-4ef5-b396-be75b7ec8810-6720f21fa06c9a19c97cbfeb.pdf&type=doc"
+        ],
+        "quantity": 3,
+        "imageLink": "/api/files/getFile?file=gy-bme280-barometrischer-sensor-fur-temperatur-luftfeuchtigkeit-und-luftdruck-438688-6720f21fa06c9a19c97cbfeb.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:33:03.012Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:33:33.880Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f2a6a06c9a19c97cbffb"
+        },
+        "name": "BH1750 Digital Light Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/de/en/developer-boards-digital-light-sensor-bh1750-debo-bh-1750-p224217.html?PROVID=2789&&r=1",
+            "/api/files/getFile?file=sensor_bh1750-6720f2a6a06c9a19c97cbffb.pdf&type=doc"
+        ],
+        "quantity": 3,
+        "imageLink": "/api/files/getFile?file=gy-302_1-6720f2a6a06c9a19c97cbffb.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:35:18.767Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:35:49.145Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f369a06c9a19c97cc00b"
+        },
+        "name": "DHT11 Temperatursensor und Luftfeuchtigkeitssensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/5-x-dht11-temperatursensor",
+            "/api/files/getFile?file=az036_a_15-1_en_b07typt2nj_c7753dae-db14-442e-ad57-ed6aeea67e7c-6720f369a06c9a19c97cc00b.pdf&type=doc"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=dht11-temperatursensor-und-luftfeuchtigkeitssensor-kompatibel-mit-arduino-und-raspberry-pi-996048-6720f369a06c9a19c97cc00b.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:38:33.308Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:39:06.355Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f3fba06c9a19c97cc01b"
+        },
+        "name": "Digispark Rev.3 Kickstarter mit ATTiny85 USB",
+        "description": "",
+        "category": "Controller",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/digispark-board",
+            "/api/files/getFile?file=az054_a10-3_en_b01n7sgc1i-6720f3fba06c9a19c97cc01b.pdf&type=doc"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=digispark-rev3-kickstarter-mit-attiny85-und-usb-kompatibel-mit-arduino-404240-6720f3fba06c9a19c97cc01b.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:40:59.681Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:41:27.165Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f4f0a06c9a19c97cc02b"
+        },
+        "name": "KY-038 Klangerfassungsmodul Mikrofon Voice- Ton Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/mikrofon-modul-klein",
+            "/api/files/getFile?file=az163_b_25-13_en_b089qhmc8y_3784f563-51fc-414d-8ab5-1c71b6bb5501-6720f4f0a06c9a19c97cc02b.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ky-038-klangerfassungsmodul-mikrofon-voice-ton-sensor-886932-6720f4f0a06c9a19c97cc02b.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:45:04.177Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:45:32.514Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6720f51ba06c9a19c97cc03b"
+        },
+        "name": "KY-036 Touch Sensor Modul",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/touch-sensor-modul",
+            "/api/files/getFile?file=az161_b_23-13_en_b089qhyrc3-6720f51ba06c9a19c97cc03b.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ky-036-touch-sensor-modul-460960-6720f51ba06c9a19c97cc03b.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T14:45:47.792Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T14:46:17.611Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672106aaa06c9a19c97cc04e"
+        },
+        "name": "MCU-230 bus transceiver",
+        "description": "ey Features and Pin Functions\nSN65HVD230 can be used in higher interference environments. The device has good reception and transmission capabilities at different speeds, and its main features are as follows:\nFully compliant with ISO11898 standard.\nHigh input impedance, allows 120 knots.\nLow current waiting mode, typical current is 370μA.\nThe signal transmission rate can reach 1Mb/s.\nWith thermal protection, open power failure protection function;\nIt resists instant interference and protects the bus.\nPitch control to reduce radio frequency interference (RFI).\nThe differential receiver has the ability to withstand a wide range of community mode interference and electromagnetic interference (EMI).\nWorking mode and control logic.\nSN65HVD230 has 3 different working modes: high speed, incline and waiting time. The operating mode control can be realized via the RS control pin. Figure 2 is a typical application diagram of SN65HVD230 in the CAN bus system. It can be taken from the number that the output point Tx of the CAN controller is connected to the data input terminal D of the SN65HVD230, and the data sent by this CAN node can be transmitted to the CAN network, while the receiving pins of the CAN controller Rx and SN65HVD230 and the data output terminal R R will be to data to received. The SN65HVD230 mode selection port Rs is connected to a tilt resistor grounded at one end by a jumper, and three working modes can be selected via hardware. Among them, the tilt resistance is a potentiometer of 0-100 kΩ.",
+        "category": "Component",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006844545037.html?src=bing&aff_short_key=UneMJZVf&aff_platform=true&isdl=y&albch=shopping&acnt=135095331&isdl=y&albcp=412811410&albag=1307320422608619&slnk=&trgt=pla-4585307093433360&plac=&crea=81707578592033&netw=s&device=c&mtctp=e&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=sd24a6e2d2527402681e83b0de5750b5fv-672106aaa06c9a19c97cc04e.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T16:00:42.214Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T16:03:10.380Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67213125a06c9a19c97cc060"
+        },
+        "name": "3-6V Motor",
+        "description": "",
+        "category": "motor",
+        "notes": "No Resources found :(",
+        "links": [],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=htb1f786ifxxxxxnxpxxq6xxfxxxj-67213125a06c9a19c97cc060.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:01:57.499Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:06:14.338Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672131f1a06c9a19c97cc067"
+        },
+        "name": "4-Phasen-Schrittmotor + ULN2003 Treiberplatine",
+        "description": "",
+        "category": "motor",
+        "notes": "Nicht bei aliexpress gekauft, sonder war im starter Kit",
+        "links": [
+            "https://de.aliexpress.com/item/1005007204939435.html?spm=a2g0o.productlist.main.5.2d416554iJuSni&algo_pvid=a3e6cccb-6b82-4885-9143-15b80de96acc&utparam-url=scene%3Asearch%7Cquery_from%3A"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=s7d32cf01385c494594d1acda05aae178k-672131f1a06c9a19c97cc067.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:05:21.704Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:05:49.132Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67213277a06c9a19c97cc07c"
+        },
+        "name": "Waterlevel detection Sensor",
+        "description": "",
+        "category": "sensor",
+        "notes": "",
+        "links": [],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=sce9589c64ef943ec85b6fb02d92ed4c5b-67213277a06c9a19c97cc07c.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:07:35.323Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:07:44.416Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672132b2a06c9a19c97cc086"
+        },
+        "name": "SRD-05VDC-SL-C",
+        "description": "",
+        "category": "",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/4000535726177.html?spm=a2g0o.productlist.main.9.5dac557c6bC12l&algo_pvid=c5faefb6-ac17-4116-a795-375f31b827fa&utparam-url=scene%3Asearch%7Cquery_from%3A"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=se0989a36e5034f15b317b8e5bbf08cb9w-672132b2a06c9a19c97cc086.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:08:34.489Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:09:09.237Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672134f8a06c9a19c97cc092"
+        },
+        "name": "IR Remote",
+        "description": "",
+        "category": "remote",
+        "notes": "Aus dem Starter Kit",
+        "links": [],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=image-672134f8a06c9a19c97cc092.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:18:16.965Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:19:55.015Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67213638a06c9a19c97cc0a1"
+        },
+        "name": "2-Terminal",
+        "description": "",
+        "category": "terminal",
+        "notes": "",
+        "links": [],
+        "quantity": 50,
+        "imageLink": "/api/files/getFile?file=s8e9142e92beb4bdcb6c37c7797bc8473v-67213638a06c9a19c97cc0a1.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-10-29T19:23:36.772Z"
+        },
+        "updatedAt": {
+            "$date": "2024-10-29T19:24:10.194Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725e9be955ff134a1c0dcb4"
+        },
+        "name": "KY-012 Buzzer Modul aktiv",
+        "description": "",
+        "category": "Buzzer",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/buzzer-modul-aktiv",
+            "/api/files/getFile?file=az140_b21-10_en_b089qjkjxw-6725e9be955ff134a1c0dcb4.pdf&type=doc"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=ky-012-buzzer-modul-aktiv-766005-6725e9be955ff134a1c0dcb4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T08:58:38.157Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T10:53:45.621Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725ea05955ff134a1c0dcc4"
+        },
+        "name": "KY-004 Taster Modul Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/button-modul",
+            "/api/files/getFile?file=az134_b13-10_en_b089qk4xlr-6725ea05955ff134a1c0dcc4.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ky-004-taster-modul-sensor-taste-kopf-schalter-schlusselschalter-884131-6725ea05955ff134a1c0dcc4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T08:59:49.517Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T09:00:18.072Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725ea68955ff134a1c0dcd4"
+        },
+        "name": "KY-022 Set IR Empfänger Infrarot Receiver CHQ1838 Sensor Modul",
+        "description": "",
+        "category": "sENSOR",
+        "notes": "",
+        "links": [
+            "https://www.az-delivery.de/products/ir-empfanger-modul",
+            "/api/files/getFile?file=az148_b6-13_en_b089qkgrtl-6725ea68955ff134a1c0dcd4.pdf&type=doc"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=ky-022-set-ir-empfanger-infrarot-receiver-chq1838-sensor-modul-177627-6725ea68955ff134a1c0dcd4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T09:01:28.777Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T09:03:00.359Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725ebd8955ff134a1c0dce4"
+        },
+        "name": "KY-013 Thermistor Temperatur Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "",
+        "links": [
+            "/api/files/getFile?file=az141_b_23-10_en_b089qj627r-6725ebd8955ff134a1c0dce4.pdf&type=doc",
+            "https://www.az-delivery.de/products/thermistor-sensor-modul-1"
+        ],
+        "quantity": 4,
+        "imageLink": "/api/files/getFile?file=ky-013-thermistor-temperatur-sensor-modul-162452-6725ebd8955ff134a1c0dce4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T09:07:36.029Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:35:11.016Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725ec3b955ff134a1c0dcf4"
+        },
+        "name": "Photo Resistor Sensor",
+        "description": "",
+        "category": "Sensor",
+        "notes": "Light sensor,\nNot from AZ but in the Elegoo starter kit",
+        "links": [
+            "https://www.az-delivery.de/products/licht-sensor-modul"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=ky-018-foto-ldr-widerstand-diode-photo-resistor-sensor-969321-6725ec3b955ff134a1c0dcf4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T09:09:15.672Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T09:09:48.905Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6725edc7955ff134a1c0dd00"
+        },
+        "name": "Capacitor",
+        "description": "2x 100uF 50V,\n1x 10uF 50V",
+        "category": "Capacitor",
+        "notes": "Sind aus dem Starter Kit, Alle in einer Box",
+        "links": [],
+        "quantity": 3,
+        "imageLink": "/api/files/getFile?file=kondensator-supercapacitor-27v-500-farad-819811-6725edc7955ff134a1c0dd00.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T09:15:51.237Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T09:15:57.340Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672603c7955ff134a1c0dd0a"
+        },
+        "name": "Potentiometer",
+        "description": "",
+        "category": "Input",
+        "notes": "Vom Starterkit",
+        "links": [],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=s51-6429p01wl-1179919363-672603c7955ff134a1c0dd0a.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T10:49:43.308Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T10:49:48.796Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672603eb955ff134a1c0dd14"
+        },
+        "name": "Heatsinks",
+        "description": "",
+        "category": "Heatsink",
+        "notes": "",
+        "links": [],
+        "quantity": 3,
+        "imageLink": "/api/files/getFile?file=3er-set-passive-alu-kuhlkorper-fur-raspberry-pi-a-b-mit-warmeleitender-spezialklebefolie-328675-672603eb955ff134a1c0dd14.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T10:50:19.535Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T10:50:25.440Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726043c955ff134a1c0dd1e"
+        },
+        "name": "Ball Switch",
+        "description": "",
+        "category": "Switch",
+        "notes": "",
+        "links": [
+            "https://medium.com/@electroincboarding49/how-to-build-tilt-ball-switch-arduino-circuit-microdaz-blog-5eeadf168821"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=0_zw2yecvuoiijsmj--6726043c955ff134a1c0dd1e.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T10:51:40.669Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T10:51:55.707Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726068e955ff134a1c0dd3b"
+        },
+        "name": "BC547",
+        "description": "",
+        "category": "Transistor",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006395438747.html?spm=a2g0o.order_list.order_list_main.5.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 25,
+        "imageLink": "/api/files/getFile?file=s463d7a53e1c548d5bdbb7e00c062ba427-6726068e955ff134a1c0dd3b.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:01:34.679Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:02:39.713Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726069f955ff134a1c0dd43"
+        },
+        "name": "BC557",
+        "description": "",
+        "category": "Transistor",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006395438747.html?spm=a2g0o.order_list.order_list_main.5.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 25,
+        "imageLink": "/api/files/getFile?file=s463d7a53e1c548d5bdbb7e00c062ba427-6726069f955ff134a1c0dd43.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:01:51.894Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:02:30.964Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672606fe955ff134a1c0dd56"
+        },
+        "name": "2N2222A",
+        "description": "",
+        "category": "Transistor",
+        "notes": "Starter Kit",
+        "links": [],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=s-l1600-672606fe955ff134a1c0dd56.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:03:26.626Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:03:34.311Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726072a955ff134a1c0dd60"
+        },
+        "name": "S8050",
+        "description": "",
+        "category": "Transistor",
+        "notes": "Starter Kit",
+        "links": [],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=s-l1600-6726072a955ff134a1c0dd60.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:04:10.086Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:04:24.050Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672607aa955ff134a1c0dd6c"
+        },
+        "name": "tlc555cp",
+        "description": "",
+        "category": "timer",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006131630942.html?spm=a2g0o.order_list.order_list_main.20.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 10,
+        "imageLink": "/api/files/getFile?file=image-672607aa955ff134a1c0dd6c.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:06:18.438Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:07:12.105Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67260808955ff134a1c0dd7c"
+        },
+        "name": "NE555P",
+        "description": "",
+        "category": "Timer",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006136856408.html?spm=a2g0o.order_list.order_list_main.14.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 20,
+        "imageLink": "/api/files/getFile?file=image-67260808955ff134a1c0dd7c.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:07:52.258Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:07:58.040Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672610d7955ff134a1c0dd88"
+        },
+        "name": "TC4428",
+        "description": "",
+        "category": "Driver",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006877962175.html?spm=a2g0o.order_list.order_list_main.24.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=image-672610d7955ff134a1c0dd88.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:45:27.614Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:45:35.829Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672610fc955ff134a1c0dd94"
+        },
+        "name": "TC4420",
+        "description": "",
+        "category": "Driver",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006877962175.html?spm=a2g0o.order_list.order_list_main.24.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=image-672610fc955ff134a1c0dd94.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:46:04.837Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:46:15.356Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261133955ff134a1c0dda0"
+        },
+        "name": "SN74HC14N",
+        "description": "",
+        "category": "Driver",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006131475961.html?spm=a2g0o.order_list.order_list_main.29.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 10,
+        "imageLink": "/api/files/getFile?file=f3332899-01-592888072-67261133955ff134a1c0dda0.F3332899-01-592888072&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:46:59.487Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:48:11.950Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726121e955ff134a1c0ddac"
+        },
+        "name": "IRF5305",
+        "description": "",
+        "category": "Mosfet",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/32882946151.html?spm=a2g0o.order_list.order_list_main.35.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=s-l960-6726121e955ff134a1c0ddac.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:50:54.553Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:51:19.178Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726126e955ff134a1c0ddb8"
+        },
+        "name": "IRLZ44N",
+        "description": "",
+        "category": "Mosfet",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/32714396199.html?spm=a2g0o.order_list.order_list_main.40.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 10,
+        "imageLink": "/api/files/getFile?file=s-l960-6726126e955ff134a1c0ddb8.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T11:52:14.860Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T11:52:36.086Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6726162e955ff134a1c0ddc4"
+        },
+        "name": "L7805CV",
+        "description": "",
+        "category": "Regulator",
+        "notes": "",
+        "links": [
+            "https://de.aliexpress.com/item/1005006131095507.html?spm=a2g0o.order_list.order_list_main.45.2cd85c5fuXRurU&gatewayAdapt=glo2deu"
+        ],
+        "quantity": 10,
+        "imageLink": "/api/files/getFile?file=s-l960-6726162e955ff134a1c0ddc4.webp&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:08:14.209Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:08:44.324Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261957955ff134a1c0ddd2"
+        },
+        "name": "MCP6002",
+        "description": "",
+        "category": "Driver",
+        "notes": "AliExpress",
+        "links": [
+            "https://www.microchip.com/en-us/product/MCP6002"
+        ],
+        "quantity": 10,
+        "imageLink": "/api/files/getFile?file=mcp6002-a3x-flipflop2-67261957955ff134a1c0ddd2.avif&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:21:43.530Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:22:00.170Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "672619d0955ff134a1c0ddde"
+        },
+        "name": "SMD HC 04",
+        "description": "",
+        "category": "Inverter",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/inverter-hex-2--6-v-so-14-smd-hc-04-p18627.html?&nbc=1"
+        ],
+        "quantity": 4,
+        "imageLink": "/api/files/getFile?file=so-14-672619d0955ff134a1c0ddde.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:23:44.004Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:23:46.877Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261b0b955ff134a1c0dde8"
+        },
+        "name": "ATMEGA 328P-PU",
+        "description": "",
+        "category": "Mikrocontroller",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/8-bit-atmega-avr-mikrocontroller-32-kb-20-mhz-pdip-28-atmega-328p-pu-p119685.html?&nbc=1"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=dip28_neu_1-67261b0b955ff134a1c0dde8.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:28:59.693Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:29:04.393Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261b20955ff134a1c0ddf2"
+        },
+        "name": "ATTINY 85-20 PU",
+        "description": "",
+        "category": "Mikrocontroller",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/8-bit-attiny-avr-risc-mikrocontroller-8-kb-20-mhz-dip-8-attiny-85-20-pu-p69299.html?&nbc=1"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=dip-8-2-67261b20955ff134a1c0ddf2.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:29:20.560Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:30:20.196Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261b49955ff134a1c0ddfe"
+        },
+        "name": "GS 8",
+        "description": "",
+        "category": "IC-Sockel",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/ic-sockel-8-polig-doppelter-federkontakt-gs-8-p8230.html?&nbc=1"
+        ],
+        "quantity": 5,
+        "imageLink": "/api/files/getFile?file=gs_8-67261b49955ff134a1c0ddfe.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:30:01.398Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:30:04.675Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261b72955ff134a1c0de15"
+        },
+        "name": "GS 28-S",
+        "description": "",
+        "category": "IC-Sockel",
+        "notes": "",
+        "links": [
+            "https://www.reichelt.de/ic-sockel-28-polig-doppelter-federkontakt-gs-28-s-p86281.html?&nbc=1"
+        ],
+        "quantity": 2,
+        "imageLink": "/api/files/getFile?file=gs_28-s-67261b72955ff134a1c0de15.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:30:42.178Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:30:47.826Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261bb5955ff134a1c0de1f"
+        },
+        "name": "74HC 595",
+        "description": "",
+        "category": "Shift Register",
+        "notes": "Starter kit",
+        "links": [
+            "https://www.reichelt.de/shift-register-3-state-ausgang-2--6-v-dil-16-74hc-595-p3269.html?&trstct=pos_1&nbc=1"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=dil-16-67261bb5955ff134a1c0de1f.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:31:49.012Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:31:59.239Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "67261bef955ff134a1c0de2b"
+        },
+        "name": "L 293 D",
+        "description": "",
+        "category": "TTL-Logik",
+        "notes": "Starter Kit",
+        "links": [
+            "https://www.reichelt.de/push-pull-ttl-logik-4-kanal-treiber-0-6-aout-dip-16-l-293-d-p9661.html?&trstct=pos_0&nbc=1"
+        ],
+        "quantity": 1,
+        "imageLink": "/api/files/getFile?file=dil-16-67261bef955ff134a1c0de2b.jpg&type=itemImage",
+        "box": null,
+        "__v": 0,
+        "createdAt": {
+            "$date": "2024-11-02T12:32:47.725Z"
+        },
+        "updatedAt": {
+            "$date": "2024-11-02T12:32:49.950Z"
+        }
+    }
+]
