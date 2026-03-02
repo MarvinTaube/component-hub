@@ -57,4 +57,41 @@ class FileController(
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"${resource.filename}\"")
             .body(resource)
     }
+
+    @PostMapping("/upload")
+    fun uploadFile(
+        @RequestParam("file") file: org.springframework.web.multipart.MultipartFile,
+        @RequestParam("type") type: String
+    ): ResponseEntity<Map<String, String>> {
+        if (file.isEmpty) {
+            return ResponseEntity.badRequest().body(mapOf("error" to "Empty file"))
+        }
+
+        val targetDir = when (type) {
+            "itemImage" -> imgDir
+            "doc" -> docDir
+            else -> return ResponseEntity.badRequest().body(mapOf("error" to "Invalid type"))
+        }
+
+        val originalFilename = file.originalFilename ?: "unknown"
+        
+        // Security check
+        if (originalFilename.contains("..") || originalFilename.contains("/") || originalFilename.contains("\\")) {
+            return ResponseEntity.status(403).body(mapOf("error" to "Invalid filename"))
+        }
+
+        // Ensure directories exist
+        if (!Files.exists(targetDir)) {
+            Files.createDirectories(targetDir)
+        }
+
+        // Generate a unique filename to avoid overwrites
+        val ext = originalFilename.substringAfterLast('.', "")
+        val uniqueFilename = "${java.util.UUID.randomUUID()}${if (ext.isNotEmpty()) ".$ext" else ""}"
+        
+        val targetFile = targetDir.resolve(uniqueFilename).toFile()
+        file.transferTo(targetFile)
+
+        return ResponseEntity.ok(mapOf("filename" to uniqueFilename, "originalName" to originalFilename))
+    }
 }

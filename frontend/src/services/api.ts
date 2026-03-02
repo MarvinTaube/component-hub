@@ -112,6 +112,16 @@ export const transactionService = {
 export const fileService = {
   getFileUrl(file: string, type: 'itemImage' | 'doc') {
     return `http://localhost:8080/api/files/getFile?file=${encodeURIComponent(file)}&type=${type}`;
+  },
+  uploadFile(file: File, type: 'itemImage' | 'doc') {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('type', type);
+    return api.post('/files/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   }
 };
 
