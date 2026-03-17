@@ -1,89 +1,49 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Menubar from 'primevue/menubar';
-import { ref } from 'vue';
-
-const items = ref([
-    {
-        label: 'Dashboard',
-        icon: 'pi pi-chart-bar',
-        to: '/'
-    },
-    {
-        label: 'Inventory',
-        icon: 'pi pi-box',
-        to: '/inventory'
-    },
-    {
-        label: 'Projects',
-        icon: 'pi pi-folder',
-        to: '/projects'
-    },
-    {
-        label: 'Organization',
-        icon: 'pi pi-sitemap',
-        items: [
-            { label: 'Storage (Drawers)', icon: 'pi pi-database', to: '/storage' },
-            { label: 'Categories', icon: 'pi pi-tag', to: '/categories' },
-            { label: 'Tags', icon: 'pi pi-hashtag', to: '/tags' }
-        ]
-    }
-]);
+import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from './components/TheWelcome.vue'
+import {ref} from "vue";
+const value = ref(50)
 </script>
 
 <template>
-  <div class="layout-wrapper">
-    <Menubar :model="items" class="main-menubar">
-      <template #start>
-        <span class="text-xl font-bold px-4">Component Hub</span>
-      </template>
-      <template #item="{ item, props, hasSubmenu }">
-        <router-link v-if="item.to" v-bind="props.action" :to="item.to" class="flex align-items-center">
-            <span :class="item.icon" />
-            <span class="ml-2">{{ item.label }}</span>
-        </router-link>
-        <a v-else v-bind="props.action" class="flex align-items-center" :target="item.target">
-            <span :class="item.icon" />
-            <span class="ml-2">{{ item.label }}</span>
-            <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down ml-2" />
-        </a>
-      </template>
-    </Menubar>
+  <header>
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <main class="p-4">
-      <RouterView />
-    </main>
-  </div>
+    <div class="wrapper">
+    </div>
+  </header>
+
+  <main>
+    <TheWelcome />
+    <Knob v-model="value" />
+  </main>
 </template>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+<style scoped>
+header {
+  line-height: 1.5;
 }
 
-.layout-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
 }
 
-.main-menubar {
-  border-radius: 0 !important;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  padding: 0.5rem 1rem;
-}
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
 
-.text-xl { font-size: 1.25rem; }
-.font-bold { font-weight: 700; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.ml-2 { margin-left: 0.5rem; }
-.p-4 { padding: 1rem; }
-.flex { display: flex; }
-.align-items-center { align-items: center; }
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
 </style>
