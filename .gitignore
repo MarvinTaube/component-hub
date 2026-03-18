@@ -1,3 +1,5 @@
 /data/dev.db
 /data/doc/
 /data/img/
+/frontend/components.d.ts
+/.idea
