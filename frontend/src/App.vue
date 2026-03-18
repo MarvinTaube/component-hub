@@ -27,6 +27,11 @@ const toggleSidebar = () => {
       </div>
       
       <nav class="sidebar-nav">
+        <RouterLink to="/add-component" class="nav-link add-link" active-class="active">
+          <i class="pi pi-plus-circle"></i>
+          <span v-if="!isCollapsed" class="nav-text">Add Component</span>
+        </RouterLink>
+        <div class="nav-divider"></div>
         <RouterLink to="/" class="nav-link" active-class="active">
           <i class="pi pi-home"></i>
           <span v-if="!isCollapsed" class="nav-text">Home</span>
@@ -124,6 +129,32 @@ body {
   overflow-x: hidden;
 }
 
+.nav-divider {
+  height: 1px;
+  background-color: var(--p-surface-200, #e2e8f0);
+  margin: 0.5rem 1.5rem;
+}
+
+.sidebar.collapsed .nav-divider {
+  margin: 0.5rem;
+}
+
+.add-link {
+  color: var(--p-primary-color, #10b981) !important;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.add-link:hover {
+  background-color: var(--p-primary-50, #ecfdf5) !important;
+  color: var(--p-primary-700, #047857) !important;
+}
+
+.add-link.active {
+  background-color: var(--p-primary-100, #d1fae5) !important;
+  border-left-color: var(--p-primary-600, #059669) !important;
+}
+
 .nav-link {
   display: flex;
   align-items: center;
@@ -219,6 +250,16 @@ body {
   }
   .nav-link.active {
     background-color: rgba(16, 185, 129, 0.1);
+  }
+  .nav-divider {
+    background-color: var(--p-surface-800, #1e293b);
+  }
+  .add-link:hover {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: var(--p-primary-300, #6ee7b7) !important;
+  }
+  .add-link.active {
+    background-color: rgba(16, 185, 129, 0.2) !important;
   }
 }
 </style>

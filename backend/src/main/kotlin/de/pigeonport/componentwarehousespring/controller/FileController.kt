@@ -6,9 +6,11 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/files")
@@ -34,7 +36,6 @@ class FileController(
             else -> return ResponseEntity.badRequest().build()
         }
 
-        // Security check: ensure the file name doesn't contain path traversal characters
         if (file.contains("..") || file.contains("/") || file.contains("\\")) {
             return ResponseEntity.status(403).build()
         }
@@ -56,5 +57,31 @@ class FileController(
             .contentType(MediaType.parseMediaType(contentType))
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"${resource.filename}\"")
             .body(resource)
+    }
+
+    @PostMapping("/upload")
+    fun uploadFile(
+        @RequestParam("file") file: MultipartFile,
+        @RequestParam("type") type: String
+    ): ResponseEntity<Map<String, String>> {
+        val targetDir = when (type) {
+            "itemImage" -> imgDir
+            "doc" -> docDir
+            else -> return ResponseEntity.badRequest().build()
+        }
+
+        if (!Files.exists(targetDir)) {
+            Files.createDirectories(targetDir)
+        }
+
+        val originalFilename = file.originalFilename ?: "unknown"
+        val extension = originalFilename.substringAfterLast('.', "")
+        val safeName = UUID.randomUUID().toString() + if (extension.isNotEmpty()) ".$extension" else ""
+        
+        val targetFile = targetDir.resolve(safeName)
+        file.transferTo(targetFile)
+
+        val fileUrl = "http://localhost:8080/api/files/getFile?file=$safeName&type=$type"
+        return ResponseEntity.ok(mapOf("url" to fileUrl))
     }
 }

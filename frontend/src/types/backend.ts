@@ -28,3 +28,16 @@ export interface Part {
   category: Category | null;
   tag: Tag[];
 }
+
+export interface PartRequest {
+  name: string;
+  description: string;
+  stock: number;
+  links?: string[];
+  notes?: string | null;
+  imageLink?: string | null;
+  drawerId?: number | null;
+  sectionNumber?: number | null;
+  categoryId?: number | null;
+  tagIds?: number[] | null;
+}
