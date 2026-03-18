@@ -8,6 +8,7 @@ export interface ComponentItem {
   image?: string
   drawerNumber: string
   stock: number
+  description?: string
 }
 
 defineProps<{

@@ -1,12 +1,26 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import ComponentCard from '../components/ComponentCard.vue'
 import type { ComponentItem } from '../components/ComponentCard.vue'
 import { apiService } from '../services/api'
 
+import InputText from 'primevue/inputtext'
+import IconField from 'primevue/iconfield'
+import InputIcon from 'primevue/inputicon'
+
 const components = ref<ComponentItem[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
+const searchQuery = ref('')
+
+const filteredComponents = computed(() => {
+  if (!searchQuery.value) return components.value
+  const query = searchQuery.value.toLowerCase()
+  return components.value.filter(item => 
+    item.name.toLowerCase().includes(query) || 
+    (item.description && item.description.toLowerCase().includes(query))
+  )
+})
 
 onMounted(async () => {
   try {
@@ -20,6 +34,7 @@ onMounted(async () => {
       return {
         id: part.id,
         name: part.name,
+        description: part.description,
         category: part.category?.name || 'Uncategorized',
         drawerNumber: drawerStr,
         stock: part.stock,
@@ -40,7 +55,11 @@ onMounted(async () => {
     <div class="header-section">
       <h2 class="page-title">Inventory</h2>
       <div class="actions">
-        <span class="component-count">{{ components.length }} items</span>
+        <IconField class="search-field">
+          <InputIcon class="pi pi-search" />
+          <InputText v-model="searchQuery" placeholder="Search components..." class="w-full" />
+        </IconField>
+        <span class="component-count">{{ filteredComponents.length }} items</span>
       </div>
     </div>
     
@@ -59,9 +78,14 @@ onMounted(async () => {
       <p>No components found in the database.</p>
     </div>
     
+    <div v-else-if="filteredComponents.length === 0" class="state-message empty">
+      <i class="pi pi-search" style="font-size: 2rem"></i>
+      <p>No components match your search.</p>
+    </div>
+    
     <div v-else class="component-grid">
       <ComponentCard 
-        v-for="item in components" 
+        v-for="item in filteredComponents" 
         :key="item.id" 
         :item="item" 
       />
@@ -97,6 +121,21 @@ onMounted(async () => {
   padding: 0.35rem 0.85rem;
   border-radius: 9999px;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-field {
+  width: 280px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .component-grid {
