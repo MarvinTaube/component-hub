@@ -17,7 +17,7 @@ defineProps<{
 </script>
 
 <template>
-  <Card class="component-card">
+  <Card class="component-card" @click="$router.push('/component/' + item.id)">
     <template #header>
       <div class="card-image-wrapper">
         <img v-if="item.image" :src="item.image" :alt="item.name" class="card-image" />

@@ -11,10 +11,18 @@ export const apiService = {
     return response.json()
   },
 
+  async getPartById(id: string | number): Promise<Part> {
+    const response = await fetch(`${API_BASE_URL}/parts/${id}`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch part: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
   async getDrawers(): Promise<Drawer[]> {
     const response = await fetch(`${API_BASE_URL}/drawers`)
     if (!response.ok) {
-        throw new Error(`Failed to fetch drawers: ${response.statusText}`)
+      throw new Error(`Failed to fetch drawers: ${response.statusText}`)
     }
     return response.json()
   },
@@ -22,7 +30,19 @@ export const apiService = {
   async getCategories(): Promise<Category[]> {
     const response = await fetch(`${API_BASE_URL}/categories`)
     if (!response.ok) {
-        throw new Error(`Failed to fetch categories: ${response.statusText}`)
+      throw new Error(`Failed to fetch categories: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
+  async createCategory(name: string): Promise<Category> {
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name })
+    })
+    if (!response.ok) {
+      throw new Error('Failed to create category')
     }
     return response.json()
   },
@@ -36,7 +56,7 @@ export const apiService = {
       body: JSON.stringify(data),
     })
     if (!response.ok) {
-        throw new Error(`Failed to create part: ${response.statusText}`)
+      throw new Error(`Failed to create part: ${response.statusText}`)
     }
     return response.json()
   },
@@ -50,7 +70,7 @@ export const apiService = {
       body: JSON.stringify({ number }),
     })
     if (!response.ok) {
-        throw new Error(`Failed to create drawer: ${response.statusText}`)
+      throw new Error(`Failed to create drawer: ${response.statusText}`)
     }
     return response.json()
   },
@@ -64,11 +84,11 @@ export const apiService = {
       method: 'POST',
       body: formData,
     })
-    
+
     if (!response.ok) {
       throw new Error(`Failed to upload file: ${response.statusText}`)
     }
-    
+
     const result = await response.json()
     return result.url
   }
