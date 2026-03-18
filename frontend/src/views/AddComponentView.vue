@@ -207,103 +207,117 @@ const cancel = () => {
     </div>
     
     <form @submit.prevent="submitForm" class="component-form">
-      <div class="form-grid">
-        <div class="field required">
-          <label for="name">Component Name</label>
-          <InputText id="name" v-model="formData.name" placeholder="e.g. 10k Resistor" required />
-        </div>
-        
-        <div class="field required">
-          <label for="stock">Initial Stock</label>
-          <InputNumber id="stock" v-model="formData.stock" showButtons :min="0" required />
-        </div>
-        
-        <div class="field full-width required">
-          <label for="description">Description <span class="field-hint">(Manufacturer or general info)</span></label>
-          <Textarea id="description" v-model="formData.description" rows="3" required />
-        </div>
-        
-        <div class="field">
-          <label for="category">Category</label>
-          <Select 
-            id="category" 
-            v-model="formData.categoryId" 
-            :options="categories" 
-            optionLabel="name" 
-            optionValue="id" 
-            placeholder="Select a Category" 
-            :loading="loadingOptions" 
-            class="w-full"
-          />
-        </div>
-        
-        <div class="field">
-          <label for="drawer">Location Drawer</label>
-          <div class="flex-row gap-2">
-            <Select 
-              id="drawer" 
-              v-model="formData.drawerId" 
-              :options="drawers" 
-              optionLabel="number" 
-              optionValue="id" 
-              placeholder="Select a Drawer" 
-              :loading="loadingOptions" 
-              class="w-full flex-1"
-            >
-              <template #option="slotProps">
-                <div>Drawer {{ slotProps.option.number }}</div>
-              </template>
-              <template #value="slotProps">
-                <div v-if="slotProps.value">
-                  Drawer {{ drawers.find(d => d.id === slotProps.value)?.number }}
-                </div>
-                <span v-else>
-                  Select a Drawer
-                </span>
-              </template>
-            </Select>
-            <Button icon="pi pi-plus" @click="showDrawerDialog = true" aria-label="Create New Drawer" v-tooltip="'Create New Drawer'" />
-          </div>
-        </div>
-        
-        <div class="field">
-          <label for="sectionNumber">Section Number</label>
-          <InputNumber id="sectionNumber" v-model="formData.sectionNumber" showButtons :min="1" />
-        </div>
-        
-        <div class="field">
-          <label for="imageLink">Image URL & Upload</label>
+      
+      <!-- Top Section: Image Preview & Essential Inputs -->
+      <div class="top-split">
+        <!-- Left: Image Preview Upload -->
+        <div class="image-upload-section">
           <div 
-            class="flex-row gap-2 transition-colors drop-zone" 
+            class="image-preview-box transition-colors"
+            title="Click or Drag to Upload"
             :class="{ 'drop-active': imageDragOver }"
+            @click="triggerImageUpload"
             @dragover.prevent="imageDragOver = true"
             @dragleave.prevent="imageDragOver = false"
             @drop.prevent="onImageDrop"
           >
-            <InputText id="imageLink" v-model="formData.imageLink" placeholder="Drag image here or link https://..." class="w-full flex-1" />
+            <img v-if="formData.imageLink" :src="formData.imageLink" alt="Component Preview" class="preview-img" />
+            <div v-else class="upload-placeholder">
+              <i class="pi pi-cloud-upload upload-icon"></i>
+              <span class="upload-text">Click or drag image here</span>
+            </div>
             
-            <input 
-              type="file" 
-              ref="imageFileInput" 
-              accept="image/*" 
-              class="hidden" 
-              @change="onImageFileChange" 
-            />
-            
-            <Button 
-              icon="pi pi-upload" 
-              aria-label="Upload Image" 
-              v-tooltip="'Upload Image'" 
-              @click="triggerImageUpload" 
-              :loading="uploadingImage" 
-              type="button"
-            />
+            <div v-if="uploadingImage" class="uploading-overlay">
+              <i class="pi pi-spin pi-spinner text-3xl"></i>
+            </div>
+          </div>
+          
+          <input 
+            type="file" 
+            ref="imageFileInput" 
+            accept="image/*" 
+            class="hidden" 
+            @change="onImageFileChange" 
+          />
+
+          <div class="image-url-input">
+            <label for="imageLink" class="text-sm">Or provide image URL</label>
+            <InputText id="imageLink" v-model="formData.imageLink" placeholder="https://..." class="w-full text-sm" />
           </div>
         </div>
-        
-        <div class="divider full-width"></div>
 
-        <div class="field full-width">
+        <!-- Right: Basic Details -->
+        <div class="basic-details">
+          <div class="field required">
+            <label for="name">Component Name</label>
+            <InputText id="name" v-model="formData.name" placeholder="e.g. 10k Resistor" required class="font-semibold text-lg" />
+          </div>
+          
+          <div class="field required">
+            <label for="stock">Initial Stock</label>
+            <InputNumber id="stock" v-model="formData.stock" showButtons :min="0" required />
+          </div>
+          
+          <div class="field">
+            <label for="category">Category</label>
+            <Select 
+              id="category" 
+              v-model="formData.categoryId" 
+              :options="categories" 
+              optionLabel="name" 
+              optionValue="id" 
+              placeholder="Select a Category" 
+              :loading="loadingOptions" 
+              class="w-full"
+            />
+          </div>
+          
+          <div class="field">
+            <label for="drawer">Location Drawer</label>
+            <div class="flex-row gap-2">
+              <Select 
+                id="drawer" 
+                v-model="formData.drawerId" 
+                :options="drawers" 
+                optionLabel="number" 
+                optionValue="id" 
+                placeholder="Select a Drawer" 
+                :loading="loadingOptions" 
+                class="w-full flex-1"
+              >
+                <template #option="slotProps">
+                  <div>Drawer {{ slotProps.option.number }}</div>
+                </template>
+                <template #value="slotProps">
+                  <div v-if="slotProps.value">
+                    Drawer {{ drawers.find(d => d.id === slotProps.value)?.number }}
+                  </div>
+                  <span v-else>
+                    Select a Drawer
+                  </span>
+                </template>
+              </Select>
+              <Button icon="pi pi-plus" @click="showDrawerDialog = true" aria-label="Create New Drawer" v-tooltip="'Create New Drawer'" />
+            </div>
+          </div>
+          
+          <div class="field">
+            <label for="sectionNumber">Section Number</label>
+            <InputNumber id="sectionNumber" v-model="formData.sectionNumber" showButtons :min="1" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="divider full-width"></div>
+
+      <!-- Bottom Section: Detailed Text blocks -->
+      <div class="details-section">
+        <div class="field full-width required">
+          <label for="description">Description <span class="field-hint">(Manufacturer or general info)</span></label>
+          <Textarea id="description" v-model="formData.description" rows="4" required />
+        </div>
+        
+        <div class="field full-width mt-2">
           <div class="flex-row justify-between align-center mb-2">
             <label class="mb-0">Documentation Links</label>
             <Button icon="pi pi-plus" label="Add Link" size="small" variant="text" @click="addLink" type="button" class="p-0" />
@@ -344,7 +358,7 @@ const cancel = () => {
           </div>
         </div>
 
-        <div class="field full-width">
+        <div class="field full-width mt-2">
            <div class="flex-row justify-between align-center mb-2">
             <label class="mb-0">Private Notes</label>
             <Button 
@@ -367,7 +381,6 @@ const cancel = () => {
             class="w-full"
           />
         </div>
-        
       </div>
       
       <div v-if="submitError" class="error-message">
@@ -376,7 +389,7 @@ const cancel = () => {
       
       <div class="form-actions">
         <Button label="Cancel" severity="secondary" @click="cancel" outlined />
-        <Button type="submit" label="Save Component" icon="pi pi-check" :loading="submitting" />
+        <Button type="submit" label="Save Component" icon="pi pi-check" :loading="submitting" size="large" />
       </div>
     </form>
     
@@ -403,7 +416,7 @@ const cancel = () => {
   flex-direction: column;
   gap: 2rem;
   height: 100%;
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
@@ -416,7 +429,7 @@ const cancel = () => {
 .divider {
   height: 1px;
   background-color: var(--p-surface-200, #e2e8f0);
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 .page-title {
@@ -429,20 +442,113 @@ const cancel = () => {
 .component-form {
   background-color: var(--p-surface-0, #ffffff);
   border: 1px solid var(--p-surface-200, #e2e8f0);
-  border-radius: 12px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 }
 
-.form-grid {
+/* Form Layouts */
+.top-split {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.image-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.image-preview-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--p-surface-50, #f8fafc);
+  border: 2px dashed var(--p-surface-300, #cbd5e1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.image-preview-box:hover {
+  border-color: var(--p-primary-400, #34d399);
+  background-color: var(--p-surface-100, #f1f5f9);
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: var(--p-surface-100, #f1f5f9);
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--p-surface-500, #64748b);
+}
+
+.upload-icon {
+  font-size: 2.5rem;
+  color: var(--p-surface-400, #94a3b8);
+  transition: color 0.2s;
+}
+
+.image-preview-box:hover .upload-icon {
+  color: var(--p-primary-500, #10b981);
+}
+
+.upload-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.uploading-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--p-primary-color, #10b981);
+}
+
+.image-url-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.basic-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
+.basic-details .field:first-child {
+  grid-column: 1 / -1;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Generic Utilities */
 .field {
   display: flex;
   flex-direction: column;
@@ -458,6 +564,11 @@ const cancel = () => {
   font-size: 0.875rem;
   color: var(--p-surface-700, #334155);
 }
+
+.text-sm { font-size: 0.875rem; }
+.text-3xl { font-size: 2rem; }
+.font-semibold { font-weight: 600; }
+.text-lg { font-size: 1.125rem; }
 
 .field-hint {
   font-weight: 400;
@@ -515,11 +626,11 @@ const cancel = () => {
 .mt-3 { margin-top: 1rem; }
 .mt-4 { margin-top: 1.5rem; }
 .mt-2 { margin-top: 0.5rem; }
+.mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-0 { margin-bottom: 0 !important; }
 .p-0 { padding: 0 !important; }
 .block { display: block; }
-.font-semibold { font-weight: 600; }
 .flex { display: flex; }
 .justify-end { justify-content: flex-end; }
 .align-center { align-items: center; }
@@ -542,9 +653,23 @@ const cancel = () => {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--p-surface-100, #f1f5f9);
+}
+
+@media (max-width: 768px) {
+  .top-split {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .image-preview-box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .basic-details {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -554,6 +679,7 @@ const cancel = () => {
   .component-form {
     background-color: var(--p-surface-900, #0f172a);
     border-color: var(--p-surface-800, #1e293b);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   }
   .divider {
     background-color: var(--p-surface-800, #1e293b);
@@ -568,6 +694,17 @@ const cancel = () => {
     color: var(--p-red-400, #f87171);
     border-color: var(--p-red-900, #7f1d1d);
     background-color: rgba(127, 29, 29, 0.1);
+  }
+  .image-preview-box {
+    background-color: var(--p-surface-800, #1e293b);
+    border-color: var(--p-surface-700, #334155);
+  }
+  .image-preview-box:hover {
+    border-color: var(--p-primary-500, #10b981);
+    background-color: var(--p-surface-700, #334155);
+  }
+  .uploading-overlay {
+    background-color: rgba(15, 23, 42, 0.7);
   }
   .drop-active {
     border-color: var(--p-primary-500, #10b981);
