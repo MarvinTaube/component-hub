@@ -61,6 +61,20 @@ export const apiService = {
     return response.json()
   },
 
+  async updatePart(id: string | number, data: PartRequest): Promise<Part> {
+    const response = await fetch(`${API_BASE_URL}/parts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to update part: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
   async createDrawer(number: number): Promise<Drawer> {
     const response = await fetch(`${API_BASE_URL}/drawers`, {
       method: 'POST',
