@@ -26,7 +26,7 @@ class ImportService(
     fun onStart() {
         if (partRepository.count() == 0L) {
             logger.info("No parts found in database, starting import from import_items.json")
-            importItems()
+            //importItems()
         } else {
             logger.info("Database already contains parts, skipping import")
         }

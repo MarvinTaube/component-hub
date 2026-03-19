@@ -1,6 +1,6 @@
 import type { Part, Drawer, Category, PartRequest } from '../types/backend'
 
-const API_BASE_URL = 'http://localhost:8080/api'
+const API_BASE_URL = '/api'
 
 export const apiService = {
   async getParts(): Promise<Part[]> {
