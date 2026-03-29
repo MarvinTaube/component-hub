@@ -6,9 +6,11 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/files")
@@ -34,7 +36,6 @@ class FileController(
             else -> return ResponseEntity.badRequest().build()
         }
 
-        // Security check: ensure the file name doesn't contain path traversal characters
         if (file.contains("..") || file.contains("/") || file.contains("\\")) {
             return ResponseEntity.status(403).build()
         }
@@ -60,38 +61,27 @@ class FileController(
 
     @PostMapping("/upload")
     fun uploadFile(
-        @RequestParam("file") file: org.springframework.web.multipart.MultipartFile,
+        @RequestParam("file") file: MultipartFile,
         @RequestParam("type") type: String
     ): ResponseEntity<Map<String, String>> {
-        if (file.isEmpty) {
-            return ResponseEntity.badRequest().body(mapOf("error" to "Empty file"))
-        }
-
         val targetDir = when (type) {
             "itemImage" -> imgDir
             "doc" -> docDir
-            else -> return ResponseEntity.badRequest().body(mapOf("error" to "Invalid type"))
+            else -> return ResponseEntity.badRequest().build()
         }
 
-        val originalFilename = file.originalFilename ?: "unknown"
-        
-        // Security check
-        if (originalFilename.contains("..") || originalFilename.contains("/") || originalFilename.contains("\\")) {
-            return ResponseEntity.status(403).body(mapOf("error" to "Invalid filename"))
-        }
-
-        // Ensure directories exist
         if (!Files.exists(targetDir)) {
             Files.createDirectories(targetDir)
         }
 
-        // Generate a unique filename to avoid overwrites
-        val ext = originalFilename.substringAfterLast('.', "")
-        val uniqueFilename = "${java.util.UUID.randomUUID()}${if (ext.isNotEmpty()) ".$ext" else ""}"
+        val originalFilename = file.originalFilename ?: "unknown"
+        val extension = originalFilename.substringAfterLast('.', "")
+        val safeName = UUID.randomUUID().toString() + if (extension.isNotEmpty()) ".$extension" else ""
         
-        val targetFile = targetDir.resolve(uniqueFilename).toFile()
+        val targetFile = targetDir.resolve(safeName)
         file.transferTo(targetFile)
 
-        return ResponseEntity.ok(mapOf("filename" to uniqueFilename, "originalName" to originalFilename))
+        val fileUrl = "http://localhost:8080/api/files/getFile?file=$safeName&type=$type"
+        return ResponseEntity.ok(mapOf("url" to fileUrl))
     }
 }

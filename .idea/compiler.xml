@@ -5,6 +5,9 @@
       <module name="backend" target="21" />
       <module name="backend.main" target="21" />
       <module name="backend.test" target="21" />
+      <module name="componenthub" target="21" />
+      <module name="componenthub.main" target="21" />
+      <module name="componenthub.test" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

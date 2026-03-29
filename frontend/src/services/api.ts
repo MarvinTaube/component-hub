@@ -1,128 +1,109 @@
-import axios from 'axios';
+import type { Part, Drawer, Category, PartRequest } from '../types/backend'
 
-const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
-});
+const API_BASE_URL = '/api'
 
-export const partService = {
-  getAll() {
-    return api.get('/parts');
+export const apiService = {
+  async getParts(): Promise<Part[]> {
+    const response = await fetch(`${API_BASE_URL}/parts`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch parts: ${response.statusText}`)
+    }
+    return response.json()
   },
-  getById(id: number) {
-    return api.get(`/parts/${id}`);
-  },
-  create(data: any) {
-    return api.post('/parts', data);
-  },
-  update(id: number, data: any) {
-    return api.put(`/parts/${id}`, data);
-  },
-  delete(id: number) {
-    return api.delete(`/parts/${id}`);
-  }
-};
 
-export const categoryService = {
-  getAll() {
-    return api.get('/categories');
+  async getPartById(id: string | number): Promise<Part> {
+    const response = await fetch(`${API_BASE_URL}/parts/${id}`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch part: ${response.statusText}`)
+    }
+    return response.json()
   },
-  create(data: any) {
-    return api.post('/categories', data);
-  },
-  update(id: number, data: any) {
-    return api.put(`/categories/${id}`, data);
-  },
-  delete(id: number) {
-    return api.delete(`/categories/${id}`);
-  }
-};
 
-export const tagService = {
-  getAll() {
-    return api.get('/tags');
+  async getDrawers(): Promise<Drawer[]> {
+    const response = await fetch(`${API_BASE_URL}/drawers`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch drawers: ${response.statusText}`)
+    }
+    return response.json()
   },
-  create(data: any) {
-    return api.post('/tags', data);
-  },
-  update(id: number, data: any) {
-    return api.put(`/tags/${id}`, data);
-  },
-  delete(id: number) {
-    return api.delete(`/tags/${id}`);
-  }
-};
 
-export const projectService = {
-  getAll() {
-    return api.get('/projects');
+  async getCategories(): Promise<Category[]> {
+    const response = await fetch(`${API_BASE_URL}/categories`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch categories: ${response.statusText}`)
+    }
+    return response.json()
   },
-  getById(id: number) {
-    return api.get(`/projects/${id}`);
-  },
-  create(data: any) {
-    return api.post('/projects', data);
-  },
-  update(id: number, data: any) {
-    return api.put(`/projects/${id}`, data);
-  },
-  delete(id: number) {
-    return api.delete(`/projects/${id}`);
-  }
-};
 
-export const drawerService = {
-  getAll() {
-    return api.get('/drawers');
+  async createCategory(name: string): Promise<Category> {
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name })
+    })
+    if (!response.ok) {
+      throw new Error('Failed to create category')
+    }
+    return response.json()
   },
-  getById(id: number) {
-    return api.get(`/drawers/${id}`);
-  },
-  create(data: any) {
-    return api.post('/drawers', data);
-  },
-  update(id: number, data: any) {
-    return api.put(`/drawers/${id}`, data);
-  },
-  delete(id: number) {
-    return api.delete(`/drawers/${id}`);
-  }
-};
 
-export const transactionService = {
-  getAll() {
-    return api.get('/transactions');
-  },
-  getById(id: number) {
-    return api.get(`/transactions/${id}`);
-  },
-  create(data: any) {
-    return api.post('/transactions', data);
-  },
-  delete(id: number) {
-    return api.delete(`/transactions/${id}`);
-  },
-  addLine(data: any) {
-    return api.post('/transaction-lines', data);
-  },
-  deleteLine(id: number) {
-    return api.delete(`/transaction-lines/${id}`);
-  }
-};
-
-export const fileService = {
-  getFileUrl(file: string, type: 'itemImage' | 'doc') {
-    return `http://localhost:8080/api/files/getFile?file=${encodeURIComponent(file)}&type=${type}`;
-  },
-  uploadFile(file: File, type: 'itemImage' | 'doc') {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('type', type);
-    return api.post('/files/upload', formData, {
+  async createPart(data: PartRequest): Promise<Part> {
+    const response = await fetch(`${API_BASE_URL}/parts`, {
+      method: 'POST',
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-  }
-};
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to create part: ${response.statusText}`)
+    }
+    return response.json()
+  },
 
-export default api;
+  async updatePart(id: string | number, data: PartRequest): Promise<Part> {
+    const response = await fetch(`${API_BASE_URL}/parts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to update part: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
+  async createDrawer(number: number): Promise<Drawer> {
+    const response = await fetch(`${API_BASE_URL}/drawers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ number }),
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to create drawer: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
+  async uploadFile(file: File, type: 'itemImage' | 'doc'): Promise<string> {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('type', type)
+
+    const response = await fetch(`${API_BASE_URL}/files/upload`, {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to upload file: ${response.statusText}`)
+    }
+
+    const result = await response.json()
+    return result.url
+  }
+}

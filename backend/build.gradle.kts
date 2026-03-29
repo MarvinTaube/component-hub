@@ -30,10 +30,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    //dev db
-    implementation("org.xerial:sqlite-jdbc:3.49.1.0")
-    implementation("org.hibernate.orm:hibernate-community-dialects")
 }
 
 kotlin {

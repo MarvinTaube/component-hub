@@ -26,17 +26,17 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 ## Project Setup
 
 ```sh
-bun install
+npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-bun dev
+npm run dev
 ```
 
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-bun run build
+npm run build
 ```
