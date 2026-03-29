@@ -9,6 +9,7 @@ import InputText from 'primevue/inputtext'
 import InputNumber from 'primevue/inputnumber'
 import Textarea from 'primevue/textarea'
 import Select from 'primevue/select'
+import AutoComplete from 'primevue/autocomplete'
 import Message from 'primevue/message'
 
 const route = useRoute()
@@ -52,6 +53,17 @@ const uploadingLinkIndex = ref<number | null>(null)
 const imageDragOver = ref(false)
 const linkDragOver = ref<boolean[]>([])
 
+// AutoComplete state
+const selectedCategory = ref<Category | null>(null)
+const filteredCategories = ref<Category[]>([])
+const categoryQuery = ref('')
+
+const selectedDrawer = ref<Drawer | null>(null)
+const filteredDrawers = ref<Drawer[]>([])
+const drawerQuery = ref('')
+
+const creatingInline = ref(false)
+
 const id = route.params.id as string
 
 onMounted(async () => {
@@ -62,8 +74,8 @@ onMounted(async () => {
       apiService.getDrawers()
     ])
     part.value = fetchedPart
-    categories.value = cats
-    drawers.value = drws
+    categories.value = cats.sort((a, b) => a.name.localeCompare(b.name))
+    drawers.value = drws.map(d => ({ ...d, label: String(d.number) })).sort((a, b) => a.number - b.number)
   } catch (err: any) {
     console.error('Failed to load part details:', err)
     error.value = "Component not found or backend unavailable."
@@ -74,6 +86,85 @@ onMounted(async () => {
 
 const goBack = () => {
   router.push('/')
+}
+
+// --- AutoComplete search handlers ---
+const searchCategories = (event: { query: string }) => {
+  categoryQuery.value = event.query
+  const q = event.query.toLowerCase()
+  filteredCategories.value = categories.value.filter(c => c.name.toLowerCase().includes(q))
+}
+
+const searchDrawers = (event: { query: string }) => {
+  drawerQuery.value = event.query
+  const q = event.query.toLowerCase()
+  filteredDrawers.value = drawers.value.filter(d => String(d.number).includes(q))
+}
+
+const onCategorySelect = (event: { value: Category }) => {
+  selectedCategory.value = event.value
+  formData.value.categoryId = event.value.id
+}
+
+const onDrawerSelect = (event: { value: Drawer }) => {
+  selectedDrawer.value = event.value
+  formData.value.drawerId = event.value.id
+}
+
+const onCategoryEnter = async () => {
+  const q = categoryQuery.value.trim()
+  if (!q || filteredCategories.value.length > 0) return
+  
+  creatingInline.value = true
+  try {
+    const newCat = await apiService.createCategory(q)
+    categories.value.push(newCat)
+    categories.value.sort((a, b) => a.name.localeCompare(b.name))
+    selectedCategory.value = newCat
+    formData.value.categoryId = newCat.id
+    categoryQuery.value = ''
+  } catch (e: any) {
+    saveError.value = e.message || 'Failed to create category'
+  } finally {
+    creatingInline.value = false
+  }
+}
+
+const onDrawerEnter = async () => {
+  const q = drawerQuery.value.trim()
+  const num = parseInt(q)
+  if (!q || isNaN(num) || filteredDrawers.value.length > 0) return
+  
+  creatingInline.value = true
+  try {
+    const res = await apiService.createDrawer(num)
+    const newDrw = { ...res, label: String(res.number) }
+    drawers.value.push(newDrw)
+    drawers.value.sort((a, b) => a.number - b.number)
+    selectedDrawer.value = newDrw
+    formData.value.drawerId = newDrw.id
+    drawerQuery.value = ''
+  } catch (e: any) {
+    saveError.value = e.message || 'Failed to create drawer'
+  } finally {
+    creatingInline.value = false
+  }
+}
+
+const onCategoryTab = () => {
+  const first = filteredCategories.value[0]
+  if (first) {
+    selectedCategory.value = first
+    formData.value.categoryId = first.id
+  }
+}
+
+const onDrawerTab = () => {
+  const first = filteredDrawers.value[0]
+  if (first) {
+    selectedDrawer.value = first
+    formData.value.drawerId = first.id
+  }
 }
 
 const getLocationString = () => {
@@ -97,6 +188,10 @@ const enterEditMode = () => {
   }
   
   formLinks.value = part.value.links ? [...part.value.links] : []
+
+  // Set autocomplete selected values
+  selectedCategory.value = part.value.category || null
+  selectedDrawer.value = part.value.drawer ? { ...part.value.drawer, label: String(part.value.drawer.number) } : null
   
   if (part.value.notes) {
     enableNotes.value = true
@@ -363,43 +458,49 @@ const saveEdits = async () => {
               </div>
 
               <div class="flex flex-col gap-2">
-                <label for="category" class="font-semibold">Category</label>
-                <div class="flex gap-2 w-full">
-                  <Select 
-                    id="category" 
-                    v-model="formData.categoryId" 
-                    :options="categories" 
-                    optionLabel="name" 
-                    optionValue="id" 
-                    placeholder="Select a Category" 
-                    class="flex-1"
-                  />
+                <div class="flex items-center gap-2">
+                  <label for="category" class="font-semibold">Category</label>
+                  <small v-if="categoryQuery.trim() && filteredCategories.length === 0 && !creatingInline" class="hint-text">— Press Enter to create "{{ categoryQuery }}"</small>
                 </div>
+                <AutoComplete 
+                  id="category" 
+                  v-model="selectedCategory" 
+                  :suggestions="filteredCategories" 
+                  optionLabel="name" 
+                  placeholder="Type to search or create..." 
+                  :loading="creatingInline" 
+                  class="w-full"
+                  @complete="searchCategories"
+                  @item-select="onCategorySelect"
+                  @keydown.enter="onCategoryEnter"
+                  @keydown.tab="onCategoryTab"
+                  forceSelection
+                />
               </div>
 
               <div class="flex flex-col gap-2">
-                <label for="drawer" class="font-semibold">Location Drawer</label>
-                <div class="flex gap-2 w-full">
-                  <Select 
-                    id="drawer" 
-                    v-model="formData.drawerId" 
-                    :options="drawers" 
-                    optionLabel="number" 
-                    optionValue="id" 
-                    placeholder="Select a Drawer" 
-                    class="flex-1"
-                  >
-                    <template #option="slotProps">
-                      <div>Drawer {{ slotProps.option.number }}</div>
-                    </template>
-                    <template #value="slotProps">
-                      <div v-if="slotProps.value">
-                        Drawer {{ drawers.find(d => d.id === slotProps.value)?.number }}
-                      </div>
-                      <span v-else>Select a Drawer</span>
-                    </template>
-                  </Select>
+                <div class="flex items-center gap-2">
+                  <label for="drawer" class="font-semibold">Location Drawer</label>
+                  <small v-if="drawerQuery.trim() && filteredDrawers.length === 0 && !creatingInline && !isNaN(parseInt(drawerQuery))" class="hint-text">— Press Enter to create Drawer {{ drawerQuery }}</small>
                 </div>
+                <AutoComplete 
+                  id="drawer" 
+                  v-model="selectedDrawer" 
+                  :suggestions="filteredDrawers" 
+                  optionLabel="label" 
+                  placeholder="Type drawer number..." 
+                  :loading="creatingInline" 
+                  class="w-full"
+                  @complete="searchDrawers"
+                  @item-select="onDrawerSelect"
+                  @keydown.enter="onDrawerEnter"
+                  @keydown.tab="onDrawerTab"
+                  forceSelection
+                >
+                  <template #option="slotProps">
+                    <div>Drawer {{ slotProps.option.number }}</div>
+                  </template>
+                </AutoComplete>
               </div>
 
               <div class="flex flex-col gap-2">
@@ -780,6 +881,21 @@ const saveEdits = async () => {
 .text-sm { font-size: 0.875rem; }
 .text-lg { font-size: 1.125rem; }
 .text-3xl { font-size: 2rem; }
+
+.hint-text {
+  color: var(--p-primary-500);
+  font-style: italic;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Make AutoComplete input stretch full width */
+:deep(.p-autocomplete) {
+  width: 100% !important;
+}
+:deep(.p-autocomplete-input) {
+  width: 100% !important;
+}
 
 .state-message {
   display: flex;
