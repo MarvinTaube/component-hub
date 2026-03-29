@@ -2,11 +2,52 @@
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Button from 'primevue/button'
+import { apiService } from './services/api'
 
 const isCollapsed = ref(false)
+const exporting = ref(false)
 
 const toggleSidebar = () => {
   isCollapsed.value = !isCollapsed.value
+}
+
+const exportToAI = async () => {
+  exporting.value = true
+  try {
+    const parts = await apiService.getParts()
+    
+    // Sort by category then name
+    const sortedParts = [...parts].sort((a, b) => {
+      const catA = a.category?.name || 'Uncategorized'
+      const catB = b.category?.name || 'Uncategorized'
+      if (catA !== catB) return catA.localeCompare(catB)
+      return a.name.localeCompare(b.name)
+    })
+
+    let mdContent = '# Component Inventory Overview\n\n'
+    mdContent += 'This file provides an overview of available electronic components and their current stock levels for project planning context.\n\n'
+    mdContent += '| Part Name | Category | Stock |\n'
+    mdContent += '|-----------|----------|-------|\n'
+
+    sortedParts.forEach(part => {
+      const category = part.category?.name || 'Uncategorized'
+      mdContent += `| ${part.name} | ${category} | ${part.stock} |\n`
+    })
+
+    const blob = new Blob([mdContent], { type: 'text/markdown' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `inventory_context_${new Date().toISOString().split('T')[0]}.md`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  } catch (e) {
+    console.error('Export failed:', e)
+  } finally {
+    exporting.value = false
+  }
 }
 </script>
 
@@ -48,6 +89,13 @@ const toggleSidebar = () => {
           <i class="pi pi-info-circle"></i>
           <span v-if="!isCollapsed" class="nav-text">About</span>
         </RouterLink>
+
+        <div class="nav-divider"></div>
+        
+        <button class="nav-link export-btn" @click="exportToAI" :disabled="exporting">
+          <i :class="exporting ? 'pi pi-spin pi-spinner' : 'pi pi-download'"></i>
+          <span v-if="!isCollapsed" class="nav-text">AI Export (.md)</span>
+        </button>
       </nav>
     </aside>
 
@@ -194,6 +242,21 @@ body {
   color: var(--p-primary-color, #10b981);
   background-color: var(--p-primary-50, #ecfdf5);
   border-left-color: var(--p-primary-color, #10b981);
+}
+
+.export-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .sidebar.collapsed .nav-link.active {
