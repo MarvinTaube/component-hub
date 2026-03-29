@@ -1,5 +1,14 @@
+    # Environment & secrets - NEVER commit
+.env
+
+# Persistent runtime data
+data/
+
+# Legacy SQLite (no longer used)
 /data/dev.db
 /data/doc/
 /data/img/
-/frontend/components.d.ts
+
+# IDE
 /.idea
+/frontend/components.d.ts
