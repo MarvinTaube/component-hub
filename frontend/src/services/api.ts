@@ -47,6 +47,18 @@ export const apiService = {
     return response.json()
   },
 
+  async updateCategory(id: number, name: string): Promise<Category> {
+    const response = await fetch(`${API_BASE_URL}/categories/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name })
+    })
+    if (!response.ok) {
+      throw new Error('Failed to update category')
+    }
+    return response.json()
+  },
+
   async createPart(data: PartRequest): Promise<Part> {
     const response = await fetch(`${API_BASE_URL}/parts`, {
       method: 'POST',
@@ -85,6 +97,20 @@ export const apiService = {
     })
     if (!response.ok) {
       throw new Error(`Failed to create drawer: ${response.statusText}`)
+    }
+    return response.json()
+  },
+
+  async updateDrawer(id: number, number: number): Promise<Drawer> {
+    const response = await fetch(`${API_BASE_URL}/drawers/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ number }),
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to update drawer: ${response.statusText}`)
     }
     return response.json()
   },

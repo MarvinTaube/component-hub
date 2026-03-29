@@ -36,6 +36,14 @@ const toggleSidebar = () => {
           <i class="pi pi-home"></i>
           <span v-if="!isCollapsed" class="nav-text">Home</span>
         </RouterLink>
+        <RouterLink to="/categories" class="nav-link" active-class="active">
+          <i class="pi pi-tags"></i>
+          <span v-if="!isCollapsed" class="nav-text">Categories</span>
+        </RouterLink>
+        <RouterLink to="/drawers" class="nav-link" active-class="active">
+          <i class="pi pi-database"></i>
+          <span v-if="!isCollapsed" class="nav-text">Drawers</span>
+        </RouterLink>
         <RouterLink to="/about" class="nav-link" active-class="active">
           <i class="pi pi-info-circle"></i>
           <span v-if="!isCollapsed" class="nav-text">About</span>
