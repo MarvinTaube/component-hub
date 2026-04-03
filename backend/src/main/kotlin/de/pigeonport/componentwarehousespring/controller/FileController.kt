@@ -81,7 +81,7 @@ class FileController(
         val targetFile = targetDir.resolve(safeName)
         file.transferTo(targetFile)
 
-        val fileUrl = "http://localhost:8080/api/files/getFile?file=$safeName&type=$type"
+        val fileUrl = "/api/files/getFile?file=$safeName&type=$type"
         return ResponseEntity.ok(mapOf("url" to fileUrl))
     }
 }

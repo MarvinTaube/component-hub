@@ -7,9 +7,8 @@ import type { Category, Drawer, PartRequest } from '../types/backend'
 import InputText from 'primevue/inputtext'
 import Textarea from 'primevue/textarea'
 import InputNumber from 'primevue/inputnumber'
-import Select from 'primevue/select'
+import AutoComplete from 'primevue/autocomplete'
 import Button from 'primevue/button'
-import Dialog from 'primevue/dialog'
 import Card from 'primevue/card'
 import Message from 'primevue/message'
 import Fieldset from 'primevue/fieldset'
@@ -24,15 +23,16 @@ const loadingOptions = ref(true)
 const submitting = ref(false)
 const submitError = ref<string | null>(null)
 
-const showDrawerDialog = ref(false)
-const newDrawerNumber = ref<number | null>(null)
-const creatingDrawer = ref(false)
-const drawerError = ref<string | null>(null)
+// AutoComplete state
+const selectedCategory = ref<Category | null>(null)
+const filteredCategories = ref<Category[]>([])
+const categoryQuery = ref('')
 
-const showCategoryDialog = ref(false)
-const newCategoryName = ref<string>('')
-const creatingCategory = ref(false)
-const categoryError = ref<string | null>(null)
+const selectedDrawer = ref<Drawer | null>(null)
+const filteredDrawers = ref<Drawer[]>([])
+const drawerQuery = ref('')
+
+const creatingInline = ref(false)
 
 const enableNotes = ref(false)
 const formLinks = ref<string[]>([])
@@ -66,14 +66,93 @@ onMounted(async () => {
       apiService.getCategories(),
       apiService.getDrawers()
     ])
-    categories.value = cats
-    drawers.value = drws
+    categories.value = cats.sort((a, b) => a.name.localeCompare(b.name))
+    drawers.value = drws.map(d => ({ ...d, label: String(d.number) })).sort((a, b) => a.number - b.number)
   } catch (e) {
     console.error('Failed to load form options:', e)
   } finally {
     loadingOptions.value = false
   }
 })
+
+// --- AutoComplete search handlers ---
+const searchCategories = (event: { query: string }) => {
+  categoryQuery.value = event.query
+  const q = event.query.toLowerCase()
+  filteredCategories.value = categories.value.filter(c => c.name.toLowerCase().includes(q))
+}
+
+const searchDrawers = (event: { query: string }) => {
+  drawerQuery.value = event.query
+  const q = event.query.toLowerCase()
+  filteredDrawers.value = drawers.value.filter(d => String(d.number).includes(q))
+}
+
+const onCategorySelect = (event: { value: Category }) => {
+  selectedCategory.value = event.value
+  formData.value.categoryId = event.value.id
+}
+
+const onDrawerSelect = (event: { value: Drawer }) => {
+  selectedDrawer.value = event.value
+  formData.value.drawerId = event.value.id
+}
+
+const onCategoryEnter = async () => {
+  const q = categoryQuery.value.trim()
+  if (!q || filteredCategories.value.length > 0) return
+  
+  creatingInline.value = true
+  try {
+    const newCat = await apiService.createCategory(q)
+    categories.value.push(newCat)
+    categories.value.sort((a, b) => a.name.localeCompare(b.name))
+    selectedCategory.value = newCat
+    formData.value.categoryId = newCat.id
+    categoryQuery.value = ''
+  } catch (e: any) {
+    submitError.value = e.message || 'Failed to create category'
+  } finally {
+    creatingInline.value = false
+  }
+}
+
+const onDrawerEnter = async () => {
+  const q = drawerQuery.value.trim()
+  const num = parseInt(q)
+  if (!q || isNaN(num) || filteredDrawers.value.length > 0) return
+  
+  creatingInline.value = true
+  try {
+    const res = await apiService.createDrawer(num)
+    const newDrw = { ...res, label: String(res.number) }
+    drawers.value.push(newDrw)
+    drawers.value.sort((a, b) => a.number - b.number)
+    selectedDrawer.value = newDrw
+    formData.value.drawerId = newDrw.id
+    drawerQuery.value = ''
+  } catch (e: any) {
+    submitError.value = e.message || 'Failed to create drawer'
+  } finally {
+    creatingInline.value = false
+  }
+}
+
+const onCategoryTab = () => {
+  const first = filteredCategories.value[0]
+  if (first) {
+    selectedCategory.value = first
+    formData.value.categoryId = first.id
+  }
+}
+
+const onDrawerTab = () => {
+  const first = filteredDrawers.value[0]
+  if (first) {
+    selectedDrawer.value = first
+    formData.value.drawerId = first.id
+  }
+}
 
 // --- Upload Handlers ---
 const triggerImageUpload = () => imageFileInput.value?.click()
@@ -152,9 +231,13 @@ const removeLink = (index: number) => {
 
 // --- Form Submission ---
 const submitForm = async () => {
-  if (!formData.value.name || !formData.value.description) {
-    submitError.value = "Name and description are required"
+  if (!formData.value.name) {
+    submitError.value = "Name is required"
     return
+  }
+
+  if (!formData.value.description || formData.value.description.trim() === '') {
+    formData.value.description = 'No Description Specified'
   }
   
   submitError.value = null
@@ -180,52 +263,7 @@ const submitForm = async () => {
   }
 }
 
-// --- Inline Dialog Creations ---
-const createNewCategory = async () => {
-  if (!newCategoryName.value.trim()) {
-    categoryError.value = "Category name is required"
-    return
-  }
-  
-  categoryError.value = null
-  creatingCategory.value = true
-  
-  try {
-    const newCategory = await apiService.createCategory(newCategoryName.value.trim())
-    categories.value.push(newCategory)
-    categories.value.sort((a, b) => a.name.localeCompare(b.name))
-    formData.value.categoryId = newCategory.id
-    showCategoryDialog.value = false
-    newCategoryName.value = ''
-  } catch (e: any) {
-    categoryError.value = e.message || "Failed to create category"
-  } finally {
-    creatingCategory.value = false
-  }
-}
 
-const createNewDrawer = async () => {
-  if (newDrawerNumber.value === null) {
-    drawerError.value = "Drawer number is required"
-    return
-  }
-  
-  drawerError.value = null
-  creatingDrawer.value = true
-  
-  try {
-    const newDrawer = await apiService.createDrawer(newDrawerNumber.value)
-    drawers.value.push(newDrawer)
-    drawers.value.sort((a, b) => a.number - b.number)
-    formData.value.drawerId = newDrawer.id
-    showDrawerDialog.value = false
-    newDrawerNumber.value = null
-  } catch (e: any) {
-    drawerError.value = e.message || "Failed to create drawer"
-  } finally {
-    creatingDrawer.value = false
-  }
-}
 
 const cancel = () => {
   router.push('/')
@@ -286,47 +324,49 @@ const cancel = () => {
               </div>
 
               <div class="flex flex-col gap-2">
-                <label for="category" class="font-semibold">Category</label>
-                <div class="flex gap-2 w-full">
-                  <Select 
-                    id="category" 
-                    v-model="formData.categoryId" 
-                    :options="categories" 
-                    optionLabel="name" 
-                    optionValue="id" 
-                    placeholder="Select a Category" 
-                    :loading="loadingOptions" 
-                    class="flex-1"
-                  />
-                  <Button icon="pi pi-plus" @click="showCategoryDialog = true" aria-label="Create New Category" />
+                <div class="flex items-center gap-2">
+                  <label for="category" class="font-semibold">Category</label>
+                  <small v-if="categoryQuery.trim() && filteredCategories.length === 0 && !creatingInline" class="hint-text">— Press Enter to create "{{ categoryQuery }}"</small>
                 </div>
+                <AutoComplete 
+                  id="category" 
+                  v-model="selectedCategory" 
+                  :suggestions="filteredCategories" 
+                  optionLabel="name" 
+                  placeholder="Type to search or create..." 
+                  :loading="loadingOptions || creatingInline" 
+                  class="w-full"
+                  @complete="searchCategories"
+                  @item-select="onCategorySelect"
+                  @keydown.enter="onCategoryEnter"
+                  @keydown.tab="onCategoryTab"
+                  forceSelection
+                />
               </div>
 
               <div class="flex flex-col gap-2">
-                <label for="drawer" class="font-semibold">Location Drawer</label>
-                <div class="flex gap-2 w-full">
-                  <Select 
-                    id="drawer" 
-                    v-model="formData.drawerId" 
-                    :options="drawers" 
-                    optionLabel="number" 
-                    optionValue="id" 
-                    placeholder="Select a Drawer" 
-                    :loading="loadingOptions" 
-                    class="flex-1"
-                  >
-                    <template #option="slotProps">
-                      <div>Drawer {{ slotProps.option.number }}</div>
-                    </template>
-                    <template #value="slotProps">
-                      <div v-if="slotProps.value">
-                        Drawer {{ drawers.find(d => d.id === slotProps.value)?.number }}
-                      </div>
-                      <span v-else>Select a Drawer</span>
-                    </template>
-                  </Select>
-                  <Button icon="pi pi-plus" @click="showDrawerDialog = true" aria-label="Create New Drawer" />
+                <div class="flex items-center gap-2">
+                  <label for="drawer" class="font-semibold">Location Drawer</label>
+                  <small v-if="drawerQuery.trim() && filteredDrawers.length === 0 && !creatingInline && !isNaN(parseInt(drawerQuery))" class="hint-text">— Press Enter to create Drawer {{ drawerQuery }}</small>
                 </div>
+                <AutoComplete 
+                  id="drawer" 
+                  v-model="selectedDrawer" 
+                  :suggestions="filteredDrawers" 
+                  optionLabel="label" 
+                  placeholder="Type drawer number..." 
+                  :loading="loadingOptions || creatingInline" 
+                  class="w-full"
+                  @complete="searchDrawers"
+                  @item-select="onDrawerSelect"
+                  @keydown.enter="onDrawerEnter"
+                  @keydown.tab="onDrawerTab"
+                  forceSelection
+                >
+                  <template #option="slotProps">
+                    <div>Drawer {{ slotProps.option.number }}</div>
+                  </template>
+                </AutoComplete>
               </div>
 
               <div class="flex flex-col gap-2">
@@ -342,8 +382,8 @@ const cancel = () => {
               <div class="flex flex-col gap-4">
                 
                 <div class="flex flex-col gap-2">
-                  <label for="description" class="font-semibold">Description <span class="text-red-500">*</span></label>
-                  <Textarea id="description" v-model="formData.description" rows="4" required class="w-full" />
+                  <label for="description" class="font-semibold">Description</label>
+                  <Textarea id="description" v-model="formData.description" rows="4" placeholder="Leave empty for default placeholder" class="w-full" />
                 </div>
 
                 <div class="flex flex-col gap-2 mt-4">
@@ -426,31 +466,7 @@ const cancel = () => {
       </template>
     </Card>
     
-    <!-- Drawer Creation Dialog -->
-    <Dialog v-model:visible="showDrawerDialog" modal header="Create New Drawer" :style="{ width: '25rem' }">
-      <div class="flex flex-col gap-2 mt-2">
-        <label for="newDrawerNumber" class="font-semibold">Drawer Number</label>
-        <InputNumber id="newDrawerNumber" v-model="newDrawerNumber" showButtons :min="1" class="w-full" autofocus />
-      </div>
-      <Message v-if="drawerError" severity="error" class="mt-4" size="small">{{ drawerError }}</Message>
-      <div class="flex justify-end gap-2 mt-4">
-        <Button label="Cancel" severity="secondary" @click="showDrawerDialog = false" variant="text" />
-        <Button label="Create" @click="createNewDrawer" :loading="creatingDrawer" />
-      </div>
-    </Dialog>
 
-    <!-- Category Creation Dialog -->
-    <Dialog v-model:visible="showCategoryDialog" modal header="Create New Category" :style="{ width: '25rem' }">
-      <div class="flex flex-col gap-2 mt-2">
-        <label for="newCategoryName" class="font-semibold">Category Name</label>
-        <InputText id="newCategoryName" v-model="newCategoryName" placeholder="e.g. Resistors" class="w-full" autofocus @keyup.enter="createNewCategory" />
-      </div>
-      <Message v-if="categoryError" severity="error" class="mt-4" size="small">{{ categoryError }}</Message>
-      <div class="flex justify-end gap-2 mt-4">
-        <Button label="Cancel" severity="secondary" @click="showCategoryDialog = false" variant="text" />
-        <Button label="Create" @click="createNewCategory" :loading="creatingCategory" />
-      </div>
-    </Dialog>
   </div>
 </template>
 
@@ -568,6 +584,21 @@ const cancel = () => {
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }
 .text-red-500 { color: var(--p-red-500); }
+
+.hint-text {
+  color: var(--p-primary-500);
+  font-style: italic;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Make AutoComplete input stretch full width */
+:deep(.p-autocomplete) {
+  width: 100% !important;
+}
+:deep(.p-autocomplete-input) {
+  width: 100% !important;
+}
 
 /* Ensure Fieldset margins natively snap */
 :deep(.p-fieldset-content) {

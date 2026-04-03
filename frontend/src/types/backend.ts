@@ -1,6 +1,7 @@
 export interface Drawer {
   id: number;
   number: number;
+  label?: string;
 }
 
 export interface Category {
