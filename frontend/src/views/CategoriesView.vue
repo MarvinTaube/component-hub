@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { apiService } from '../services/api'
-import type { Category } from '../types/backend'
+import type { Category, Part } from '../types/backend'
 
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
@@ -11,14 +11,17 @@ import Dialog from 'primevue/dialog'
 import Message from 'primevue/message'
 
 const categories = ref<Category[]>([])
+const parts = ref<Part[]>([])
 const loading = ref(true)
 const error = ref<string | null>(null)
 
 const showCreateDialog = ref(false)
 const showEditDialog = ref(false)
+const showPartsDialog = ref(false)
 const newCategoryName = ref('')
 const editingCategory = ref<Category | null>(null)
 const editCategoryName = ref('')
+const selectedCategoryForParts = ref<Category | null>(null)
 
 const creating = ref(false)
 const saving = ref(false)
@@ -28,8 +31,15 @@ const saveError = ref<string | null>(null)
 const fetchCategories = async () => {
   loading.value = true
   try {
-    const data = await apiService.getCategories()
-    categories.value = data.sort((a, b) => a.name.localeCompare(b.name))
+    const [cats, allParts] = await Promise.all([
+      apiService.getCategories(),
+      apiService.getParts()
+    ])
+    parts.value = allParts
+    categories.value = cats.map(cat => ({
+      ...cat,
+      productsCount: allParts.filter(p => p.category?.id === cat.id).length
+    })).sort((a, b) => a.name.localeCompare(b.name))
   } catch (err: any) {
     console.error('Failed to load categories:', err)
     error.value = "Failed to load categories."
@@ -37,6 +47,22 @@ const fetchCategories = async () => {
     loading.value = false
   }
 }
+
+const getPartCount = (categoryId: number) => {
+  return parts.value.filter(p => p.category?.id === categoryId).length
+}
+
+const openPartsDialog = (category: Category) => {
+  selectedCategoryForParts.value = category
+  showPartsDialog.value = true
+}
+
+const filteredPartsForSelectedCategory = computed(() => {
+  if (!selectedCategoryForParts.value) return []
+  return parts.value
+    .filter(p => p.category?.id === selectedCategoryForParts.value?.id)
+    .sort((a, b) => a.name.localeCompare(b.name))
+})
 
 const handleCreateCategory = async () => {
   if (!newCategoryName.value.trim()) return
@@ -115,6 +141,18 @@ onMounted(fetchCategories)
         
         <Column field="id" header="ID" sortable style="width: 100px"></Column>
         <Column field="name" header="Name" sortable></Column>
+        <Column header="Products" sortable sortField="productsCount">
+            <template #body="slotProps">
+                <a 
+                  href="javascript:void(0)" 
+                  @click="openPartsDialog(slotProps.data)"
+                  class="count-link"
+                  :class="{ 'empty-count': getPartCount(slotProps.data.id) === 0 }"
+                >
+                    {{ getPartCount(slotProps.data.id) }} items
+                </a>
+            </template>
+        </Column>
         <Column field="notes" header="Notes">
             <template #body="slotProps">
                 {{ slotProps.data.notes || '-' }}
@@ -155,6 +193,32 @@ onMounted(fetchCategories)
         <Button label="Save Changes" :loading="saving" @click="handleUpdateCategory" />
       </template>
     </Dialog>
+
+    <Dialog 
+      v-model:visible="showPartsDialog" 
+      :header="`Products in ${selectedCategoryForParts?.name || 'Category'}`" 
+      :modal="true" 
+      :style="{ width: '500px' }"
+    >
+      <div class="parts-list">
+        <div v-if="filteredPartsForSelectedCategory.length === 0" class="text-center p-4 text-surface-500">
+          No products associated with this category yet.
+        </div>
+        <div v-else class="flex flex-col gap-2">
+          <router-link 
+            v-for="part in filteredPartsForSelectedCategory" 
+            :key="part.id"
+            :to="`/component/${part.id}`"
+            class="part-item-link"
+          >
+            <div class="flex justify-between items-center p-3 border border-surface-200 dark:border-surface-800 rounded-lg hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+              <span class="font-medium">{{ part.name }}</span>
+              <span class="text-sm px-2 py-1 bg-surface-100 dark:bg-surface-700 rounded">{{ part.stock }} units</span>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </Dialog>
   </div>
 </template>
 
@@ -173,5 +237,27 @@ onMounted(fetchCategories)
 
 .card {
   transition: transform 0.2s ease, shadow 0.2s ease;
+}
+
+.count-link {
+  color: var(--p-primary-color);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.count-link:hover {
+  color: var(--p-primary-600);
+}
+
+.empty-count {
+  color: var(--p-surface-400);
+  text-decoration: none;
+  cursor: default;
+}
+
+.part-item-link {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

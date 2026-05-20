@@ -12,3 +12,4 @@ data/
 # IDE
 /.idea
 /frontend/components.d.ts
+/.idea/
