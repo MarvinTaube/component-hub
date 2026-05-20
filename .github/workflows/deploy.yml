@@ -6,8 +6,8 @@ on:
     types: [published]
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_FRONTEND: ghcr.io/marvintaube/component-hub-frontend
-  IMAGE_NAME_BACKEND: ghcr.io/marvintaube/component-hub-backend
+  IMAGE_NAME_FRONTEND: ghcr.io/${{ github.repository_owner }}/component-hub-frontend
+  IMAGE_NAME_BACKEND: ghcr.io/${{ github.repository_owner }}/component-hub-backend
 
 jobs:
   build-and-push:
@@ -71,7 +71,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           passphrase: ${{ secrets.VPS_SSH_PASSPHRASE }}
           script: |
-            cd /home/marvin/docker/pigeonport
+            cd /home/marvin/docker/component-hub
             
             # 3. Update the app
             docker compose -f docker-compose.prod.yml pull
@@ -80,5 +80,10 @@ jobs:
             # 4. Cleanup old images
             docker image prune -f
             
+            # Restart the Demo App
+            cd /home/marvin/demo/component-hub
+            docker compose -f docker-compose-demo.yml pull
+            docker compose -f docker-compose-demo.yml up -d --remove-orphans
+
             echo "Reload DNS entries"
             docker exec nginxproxymanager-app-1 nginx -s reload
